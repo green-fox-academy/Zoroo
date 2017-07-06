@@ -5,6 +5,11 @@ public class UserProfile {
 
 
   private int userId;
+
+  public String getUserName() {
+    return userName;
+  }
+
   private String userName;
   private String userPassword;
   private int goodAnswers;
@@ -12,4 +17,7 @@ public class UserProfile {
   private int totalNumberOfQuestionsAnswered;
   private int precentage;
 
+  public UserProfile(String username) {
+    userName = username;
+  }
 }
