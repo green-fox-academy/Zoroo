@@ -1,6 +1,7 @@
 package com.greenfox.zoroo.gameLogic;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.validation.constraints.Max;
@@ -20,10 +21,15 @@ public class MathGame {
   @Min(1)
   @Max(10)
   private int levelOfHardness;
+  private int amountOfPossibleAnswers;
 
 
   public void setLevelOfHardness(int levelOfHardness) {
     this.levelOfHardness = levelOfHardness;
+  }
+
+  public void setAmountOfPossibleAnswers(int amountOfPossibleAnswers) {
+    this.amountOfPossibleAnswers = amountOfPossibleAnswers;
   }
 
   public List<String> getPossibleAnswers() {
@@ -34,18 +40,18 @@ public class MathGame {
     return indexOfTheRightAnswerInThePossibleAnswers;
   }
 
-  private int getRandomNumber(int maxValue){
+  private int getRandomNumber(int maxValue) {
     Random r = new Random();
-    return r.nextInt(maxValue-1) + 1;
+    return r.nextInt(maxValue - 1) + 1;
   }
 
-  private void getRandomFirstAndSecondNumbers(){
+  private void setRandomFirstAndSecondNumbers() {
     firstNumber = getRandomNumber(firstNumberMaxValue);
     secondNumber = getRandomNumber(secondNumberMaxValue);
   }
 
-  private void setTimeTableMaxNumberValues(){
-    switch (levelOfHardness){
+  private void setTimeTableMaxNumberValues() {
+    switch (levelOfHardness) {
       case 1:
         firstNumberMaxValue = 5;
         secondNumberMaxValue = 10;
@@ -79,15 +85,25 @@ public class MathGame {
     }
   }
 
-  public void playTimeTableGame(int levelOfHardness){
+  public void playTimeTableGame(int levelOfHardness, int amountOfPossibleAnswers) {
     this.levelOfHardness = levelOfHardness;
+    this.amountOfPossibleAnswers = amountOfPossibleAnswers;
     setTimeTableMaxNumberValues();
-    getRandomFirstAndSecondNumbers();
-    
+    setRandomFirstAndSecondNumbers();
+    rightAnswer = firstNumber * secondNumber;
+    setPossibleAnswersListForTimeTable();
+
 
   }
 
-
+  private void setPossibleAnswersListForTimeTable() {
+    possibleAnswers = new ArrayList<>();
+    possibleAnswers.add(String.valueOf(rightAnswer));
+    while (possibleAnswers.size() < amountOfPossibleAnswers) {
+      String wrongAnswer = String.valueOf(firstNumber * secondNumber);
+      possibleAnswers.add(wrongAnswer);
+    }
+  }
 }
 
 
