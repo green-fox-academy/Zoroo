@@ -2,6 +2,7 @@ package com.greenfox.zoroo.gameLogic;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import javax.validation.constraints.Max;
@@ -92,17 +93,24 @@ public class MathGame {
     setRandomFirstAndSecondNumbers();
     rightAnswer = firstNumber * secondNumber;
     setPossibleAnswersListForTimeTable();
-
-
+    setIndexOfTheRightAnswerInThePossibleAnswers();
   }
 
   private void setPossibleAnswersListForTimeTable() {
     possibleAnswers = new ArrayList<>();
     possibleAnswers.add(String.valueOf(rightAnswer));
     while (possibleAnswers.size() < amountOfPossibleAnswers) {
-      String wrongAnswer = String.valueOf(firstNumber * secondNumber);
-      possibleAnswers.add(wrongAnswer);
+      setRandomFirstAndSecondNumbers();
+      String otherAnswer = String.valueOf(firstNumber * secondNumber);
+      if (!possibleAnswers.contains(otherAnswer)) {
+        possibleAnswers.add(otherAnswer);
+      }
     }
+    Collections.shuffle(possibleAnswers);
+  }
+
+  private void setIndexOfTheRightAnswerInThePossibleAnswers(){
+    indexOfTheRightAnswerInThePossibleAnswers = possibleAnswers.indexOf(String.valueOf(rightAnswer));
   }
 }
 
