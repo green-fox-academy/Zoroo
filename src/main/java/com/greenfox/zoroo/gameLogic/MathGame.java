@@ -1,7 +1,9 @@
 package com.greenfox.zoroo.gameLogic;
 
 
+import com.greenfox.zoroo.model.DataType;
 import com.greenfox.zoroo.model.Game;
+import com.greenfox.zoroo.model.Question;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -101,6 +103,13 @@ public class MathGame {
     setQuestion();
     setPossibleAnswersListForTimeTable();
     setIndexOfTheRightAnswerInThePossibleAnswers();
+    Question question = new Question();
+    question.setAnswerType(DataType.TEXT);
+    question.setQuestionType(DataType.TEXT);
+    question.setQuestion(getQuestion());
+    question.setIndexOfTheRightAnswerInThePossibleAnswers(getIndexOfTheRightAnswerInThePossibleAnswers());
+    question.setPossibleAnswers(getPossibleAnswers());
+    game.setQuestion(question);
   }
 
   private void setQuestion(){

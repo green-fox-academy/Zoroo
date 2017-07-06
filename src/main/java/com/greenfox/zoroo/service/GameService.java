@@ -50,13 +50,6 @@ public class GameService {
 
   private Game playMathTimeTableGame(Game game){
     mathGame.playTimeTableGame(game);
-    Question question = new Question();
-    question.setAnswerType(DataType.TEXT);
-    question.setQuestionType(DataType.TEXT);
-    question.setQuestion(mathGame.getQuestion());
-    question.setIndexOfTheRightAnswerInThePossibleAnswers(mathGame.getIndexOfTheRightAnswerInThePossibleAnswers());
-    question.setPossibleAnswers(mathGame.getPossibleAnswers());
-    game.setQuestion(question);
     return game;
   }
 }
