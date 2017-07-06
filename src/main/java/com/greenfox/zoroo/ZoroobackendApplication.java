@@ -8,5 +8,6 @@ public class ZoroobackendApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ZoroobackendApplication.class, args);
+		System.out.println("Hello Zoroo!");
 	}
 }
