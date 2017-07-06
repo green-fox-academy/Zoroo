@@ -3,16 +3,21 @@
     <head>
         <meta charset="UTF-8"/>
         <title>Játék</title>
+        <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" th:href="@{/css/style.css}"/>
+        <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet"/>
     </head>
     <body>
         <p id="hidden" th:text="${user.userId}"></p>
         <p id="hidden" th:text="${question.goodIndex}"></p>
-        <h1 th:text="${question.question}">Kérdés</h1>
+        <h1 class="selection question" th:text="${question.question}">Kérdés</h1>
         <ul>
-            <form action="/answer" th:each="answer, iter :${question.possibleAnswers}" id="select">
+            <form style="display:inline" action="/answer" th:each="answer, iter :${question.possibleAnswers}" id="select">
                 <input type="hidden" name="index" th:value="${iter.index}"/>
-                <input type="submit" th:value="${answer}"/>
+                <input class="selection answer" type="submit" th:value="${answer}"/>
             </form>
         </ul>
+        <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+        <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
     </body>
 </html>

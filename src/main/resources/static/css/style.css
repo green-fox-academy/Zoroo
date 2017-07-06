@@ -23,6 +23,10 @@ body {
     color: #ffffff;
 }
 
+#hidden {
+    visibility: hidden;
+}
+
 .selection {
     background-color: #009cd6;
     border-radius: 10px;
@@ -65,4 +69,18 @@ select {
 
 .navitem:hover {
     background-color: #ffffff;
+}
+
+.question {
+    margin: 0 3%;
+    text-align: center;
+    width: 80%;
+    background-color: #ffbb15;
+}
+
+.answer {
+    display: inline-block;
+    font-size: 72px;
+    width: 40%;
+    height: 200px;
 }
