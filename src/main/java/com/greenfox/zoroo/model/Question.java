@@ -9,7 +9,6 @@ public class Question {
 
   private String question;
   private DataType questionType;
-  private String answer;
   private DataType answerType;
   private List<String> possibleAnswers;
   private int indexOfTheRightAnswerInThePossibleAnswers;
@@ -32,14 +31,6 @@ public class Question {
 
   public void setQuestionType(DataType questionType) {
     this.questionType = questionType;
-  }
-
-  public String getAnswer() {
-    return answer;
-  }
-
-  public void setAnswer(String answer) {
-    this.answer = answer;
   }
 
   public DataType getAnswerType() {
