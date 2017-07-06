@@ -1,7 +1,7 @@
 package com.greenfox.zoroo.controller;
 
 import com.greenfox.zoroo.model.Question;
-import com.greenfox.zoroo.model.UserProfile;
+import com.greenfox.zoroo.model.dto.UserProfileDto;
 import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +17,10 @@ public class HomeController {
 
   @GetMapping(value = "/question")
   public String getQuestionPage(Model model) {
-    UserProfile user = new UserProfile("Pistike");
+    UserProfileDto user = new UserProfileDto(1L, "Pistike");
     Question question = new Question();
 
-    question.setQuestion("18 + 24 = ?");
+    question.setQuestionText("18 + 24 = ?");
     question.setGoodIndex(1);
     ArrayList<String> answers = new ArrayList<>();
     answers.add("42");

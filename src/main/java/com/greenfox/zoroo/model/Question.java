@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Question {
 
-  private String question;
+  private String questionText;
   private DataType questionType;
   private DataType answerType;
   private List<String> possibleAnswers;
@@ -17,12 +17,12 @@ public class Question {
 
   }
 
-  public String getQuestion() {
-    return question;
+  public String getQuestionText() {
+    return questionText;
   }
 
-  public void setQuestion(String question) {
-    this.question = question;
+  public void setQuestionText(String questionText) {
+    this.questionText = questionText;
   }
 
   public DataType getQuestionType() {

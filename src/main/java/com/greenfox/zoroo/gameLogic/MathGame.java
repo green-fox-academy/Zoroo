@@ -1,6 +1,9 @@
 package com.greenfox.zoroo.gameLogic;
 
 
+import com.greenfox.zoroo.model.DataType;
+import com.greenfox.zoroo.model.Game;
+import com.greenfox.zoroo.model.Question;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +20,7 @@ public class MathGame {
   private int firstNumberMaxValue;
   private int secondNumberMaxValue;
   private int rightAnswer;
+  private String questionText;
   private List<String> possibleAnswers;
   private int indexOfTheRightAnswerInThePossibleAnswers;
   @Min(1)
@@ -24,6 +28,10 @@ public class MathGame {
   private int levelOfHardness;
   private int amountOfPossibleAnswers;
 
+
+  public String getQuestionText() {
+    return questionText;
+  }
 
   public void setLevelOfHardness(int levelOfHardness) {
     this.levelOfHardness = levelOfHardness;
@@ -56,52 +64,111 @@ public class MathGame {
       case 1:
         firstNumberMaxValue = 5;
         secondNumberMaxValue = 10;
+        break;
       case 2:
         firstNumberMaxValue = 10;
         secondNumberMaxValue = 10;
+        break;
       case 3:
         firstNumberMaxValue = 5;
         secondNumberMaxValue = 20;
+        break;
       case 4:
         firstNumberMaxValue = 10;
         secondNumberMaxValue = 20;
+        break;
       case 5:
         firstNumberMaxValue = 5;
         secondNumberMaxValue = 30;
+        break;
       case 6:
         firstNumberMaxValue = 10;
         secondNumberMaxValue = 30;
+        break;
       case 7:
         firstNumberMaxValue = 15;
         secondNumberMaxValue = 20;
+        break;
       case 8:
         firstNumberMaxValue = 15;
         secondNumberMaxValue = 30;
+        break;
       case 9:
         firstNumberMaxValue = 20;
         secondNumberMaxValue = 30;
+        break;
       case 10:
         firstNumberMaxValue = 30;
         secondNumberMaxValue = 30;
+        break;
     }
   }
 
-  public void playTimeTableGame(int levelOfHardness, int amountOfPossibleAnswers) {
-    this.levelOfHardness = levelOfHardness;
-    this.amountOfPossibleAnswers = amountOfPossibleAnswers;
+  public void playTimeTableGame(Game game) {
+    this.levelOfHardness = game.getLevelOfHardness();
+    this.amountOfPossibleAnswers = game.getNumberOfAllTheAnswerPossibilities();
     setTimeTableMaxNumberValues();
     setRandomFirstAndSecondNumbers();
-    rightAnswer = firstNumber * secondNumber;
-    setPossibleAnswersListForTimeTable();
+    setRightAnswer(game);
+    setQuestionText(game);
+    setPossibleAnswersListForTimeTable(game);
     setIndexOfTheRightAnswerInThePossibleAnswers();
+    game.setQuestion(setTheQuestionsForThisGame());
+
+
   }
 
-  private void setPossibleAnswersListForTimeTable() {
+  private Question setTheQuestionsForThisGame() {
+    Question question = new Question();
+    question.setAnswerType(DataType.TEXT);
+    question.setQuestionType(DataType.TEXT);
+    question.setQuestionText(questionText);
+    question.setGoodIndex(
+            indexOfTheRightAnswerInThePossibleAnswers);
+    question.setPossibleAnswers(possibleAnswers);
+    return question;
+  }
+
+
+  private void setQuestionText(Game game) {
+    switch (game.getGameType()) {
+      case MATHTIMETABLE:
+        questionText = "How much is " + firstNumber + " * " + secondNumber + "?";
+        break;
+      case MATHADDING:
+        questionText = "How much is " + firstNumber + " + " + secondNumber + "?";
+        break;
+    }
+  }
+
+  private void setRightAnswer(Game game) {
+    switch (game.getGameType()) {
+      case MATHTIMETABLE:
+        rightAnswer = firstNumber * secondNumber;
+        break;
+      case MATHADDING:
+        rightAnswer = firstNumber + secondNumber;
+        break;
+    }
+
+
+  }
+
+
+  private void setPossibleAnswersListForTimeTable(Game game) {
     possibleAnswers = new ArrayList<>();
     possibleAnswers.add(String.valueOf(rightAnswer));
+    String otherAnswer = "";
     while (possibleAnswers.size() < amountOfPossibleAnswers) {
       setRandomFirstAndSecondNumbers();
-      String otherAnswer = String.valueOf(firstNumber * secondNumber);
+      switch (game.getGameType()){
+        case MATHTIMETABLE:
+          otherAnswer = String.valueOf(firstNumber * secondNumber);
+          break;
+        case MATHADDING:
+          otherAnswer = String.valueOf(firstNumber + secondNumber);
+          break;
+      }
       if (!possibleAnswers.contains(otherAnswer)) {
         possibleAnswers.add(otherAnswer);
       }
@@ -109,11 +176,8 @@ public class MathGame {
     Collections.shuffle(possibleAnswers);
   }
 
-  private void setIndexOfTheRightAnswerInThePossibleAnswers(){
-    indexOfTheRightAnswerInThePossibleAnswers = possibleAnswers.indexOf(String.valueOf(rightAnswer));
+  private void setIndexOfTheRightAnswerInThePossibleAnswers() {
+    indexOfTheRightAnswerInThePossibleAnswers = possibleAnswers
+            .indexOf(String.valueOf(rightAnswer));
   }
 }
-
-
-
-
