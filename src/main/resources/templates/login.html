@@ -5,9 +5,10 @@
     <title>Bejelentkezés</title>
 </head>
 <body>
+    <!--/*@thymesVar id="loginFormDto" type="com.greenfox.zoroo.model.dto.LoginFormDto"*/-->
     <form th:action="@{/login}" th:object="${loginFormDto}" method="post">
-        <div><label> Felhasználónév: <input type="text" name="username"/></label></div>
-        <div><label> Jelszó: <input type="password" name="password"/></label></div>
+        <div><label> Felhasználónév: <input type="text" th:field="*{username}"/></label></div>
+        <div><label> Jelszó: <input type="password" th:field="*{password}"/></label></div>
         <div><input type="submit" value="Bejelentkezés"/></div>
     </form>
 </body>

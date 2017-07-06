@@ -19,7 +19,8 @@ public class LoginController {
   @PostMapping(value = {"/login", "/login/"})
   public String processLoginForm(@Valid LoginFormDto loginFormDto) {
 
-    System.out.println("Username: " + loginFormDto.getUsername() + ", Password: " + loginFormDto.getPassword());
-    return "main";
+    System.out.println(
+        "Username: " + loginFormDto.getUsername() + ", Password: " + loginFormDto.getPassword());
+    return "redirect:/main";
   }
 }
