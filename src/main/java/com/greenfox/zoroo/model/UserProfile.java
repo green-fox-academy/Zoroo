@@ -1,21 +1,28 @@
 package com.greenfox.zoroo.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
+@Entity
 public class UserProfile {
 
-
-  private int userId;
-
-  public String getUserName() {
-    return userName;
-  }
-
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private long userId;
+  @NotNull
   private String userName;
+  @NotNull
   private String userPassword;
   private int goodAnswers;
   private int badAnswers;
+  @Transient
   private int totalNumberOfQuestionsAnswered;
-  private int precentage;
+  @Transient
+  private float precentage;
 
   public UserProfile(String username) {
     userName = username;

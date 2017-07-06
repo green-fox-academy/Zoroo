@@ -8,9 +8,11 @@ public class Game {
   private static final AtomicInteger gameRunningCounter = new AtomicInteger(0);
 
   private int gameId;
-  private int userId;
+  private UserProfile userProfile;
   private Question question;
   private int totalQuestionsInThisGame;
+  private int levelOfHardness;
+  private int numberOfAllTheAnswerPossibilities;
   private int thisQuestionsNumber;
   private int rightAnswersSoFar;
   private int wrongAnswersSoFar;
@@ -24,12 +26,12 @@ public class Game {
     return gameId;
   }
 
-  public int getUserId() {
-    return userId;
+  public UserProfile getUserProfile() {
+    return userProfile;
   }
 
-  public void setUserId(int userId) {
-    this.userId = userId;
+  public void setUserProfile(UserProfile userProfile) {
+    this.userProfile = userProfile;
   }
 
   public Question getQuestion() {
@@ -46,6 +48,22 @@ public class Game {
 
   public void setTotalQuestionsInThisGame(int totalQuestionsInThisGame) {
     this.totalQuestionsInThisGame = totalQuestionsInThisGame;
+  }
+
+  public int getLevelOfHardness() {
+    return levelOfHardness;
+  }
+
+  public void setLevelOfHardness(int levelOfHardness) {
+    this.levelOfHardness = levelOfHardness;
+  }
+
+  public int getNumberOfAllTheAnswerPossibilities() {
+    return numberOfAllTheAnswerPossibilities;
+  }
+
+  public void setNumberOfAllTheAnswerPossibilities(int numberOfAllTheAnswerPossibilities) {
+    this.numberOfAllTheAnswerPossibilities = numberOfAllTheAnswerPossibilities;
   }
 
   public int getThisQuestionsNumber() {
