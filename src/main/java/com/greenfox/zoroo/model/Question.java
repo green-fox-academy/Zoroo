@@ -11,7 +11,7 @@ public class Question {
   private DataType questionType;
   private DataType answerType;
   private List<String> possibleAnswers;
-  private int indexOfTheRightAnswerInThePossibleAnswers;
+  private int goodIndex;
 
   public Question() {
 
@@ -49,13 +49,13 @@ public class Question {
     this.possibleAnswers = possibleAnswers;
   }
 
-  public int getIndexOfTheRightAnswerInThePossibleAnswers() {
-    return indexOfTheRightAnswerInThePossibleAnswers;
+  public int getGoodIndex() {
+    return goodIndex;
   }
 
-  public void setIndexOfTheRightAnswerInThePossibleAnswers(
-          int indexOfTheRightAnswerInThePossibleAnswers) {
-    this.indexOfTheRightAnswerInThePossibleAnswers = indexOfTheRightAnswerInThePossibleAnswers;
+  public void setGoodIndex(
+          int goodIndex) {
+    this.goodIndex = goodIndex;
   }
 }
 

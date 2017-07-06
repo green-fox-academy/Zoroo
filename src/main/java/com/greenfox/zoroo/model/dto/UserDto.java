@@ -12,5 +12,5 @@ import lombok.Setter;
 public class UserDto {
 
   @Setter(AccessLevel.NONE)
-  private String name;
+  private String username;
 }

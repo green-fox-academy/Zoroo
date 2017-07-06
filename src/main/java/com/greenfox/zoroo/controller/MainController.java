@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
 
   @GetMapping(value = {"/main", "/main/"})
-  public String showMainPage(Model model) {
+  public String getMainPage(Model model) {
     model.addAttribute("user", new UserDto("Jancsi"));
     model.addAttribute("game", new GameStartDto());
     return "main";

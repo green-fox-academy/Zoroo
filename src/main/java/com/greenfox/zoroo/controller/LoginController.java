@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class LoginController {
 
   @GetMapping(value = {"/login", "/login/"})
-  public String showLoginPage(Model model, LoginFormDto loginFormDto) {
+  public String getLoginPage(Model model, LoginFormDto loginFormDto) {
     model.addAttribute("loginFormDto", loginFormDto);
+    model.addAttribute("error", "Nem én voltam");
     return "login";
   }
 

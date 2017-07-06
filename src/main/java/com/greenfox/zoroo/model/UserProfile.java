@@ -13,6 +13,11 @@ public class UserProfile {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long userId;
+
+  public String getUserName() {
+    return userName;
+  }
+
   @NotNull
   private String userName;
   @NotNull
@@ -24,4 +29,12 @@ public class UserProfile {
   @Transient
   private float precentage;
 
+  public UserProfile(String username) {
+    userId = 0;
+    userName = username;
+  }
+
+  public long getUserId() {
+    return userId;
+  }
 }
