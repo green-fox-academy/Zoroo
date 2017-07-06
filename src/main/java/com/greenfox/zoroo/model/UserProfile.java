@@ -25,6 +25,11 @@ public class UserProfile {
   private float precentage;
 
   public UserProfile(String username) {
+    userId = 0;
     userName = username;
+  }
+
+  public long getUserId() {
+    return userId;
   }
 }
