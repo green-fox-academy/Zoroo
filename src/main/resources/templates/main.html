@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Főoldal - menü</title>
+</head>
+<body>
+    <h1 th:text="'Üdv ' + ${user.name}">Üdv felhasználó</h1>
+    <ul id="navlinks">
+        <li>Játék</li>
+        <li>Statisztika</li>
+        <li>Kijelentkezés</li>
+    </ul>
+    <div>
+        <h2>Válassz témakört</h2>
+        <ul>
+            <li th:each="category : ${game.categories}">
+                <p th:text="${category}"></p>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <h2>Válassz nehézségi szintet</h2>
+        <ul>
+            <li th:each="difficulty : ${game.difficulties}">
+                <p th:text="${difficulty}"></p>
+            </li>
+        </ul>
+    </div>
+    <a th:href="@{/startgame}">Kezdhetjük</a>
+</body>
+</html>
