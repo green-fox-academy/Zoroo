@@ -12,7 +12,7 @@ public class UserProfile {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private long userId;
+  private long id;
   @NotNull
   private String username;
   @NotNull
@@ -37,12 +37,12 @@ public class UserProfile {
     this.precentage = precentage;
   }
 
-  public long getUserId() {
-    return userId;
+  public long getId() {
+    return id;
   }
 
-  public void setUserId(long userId) {
-    this.userId = userId;
+  public void setId(long id) {
+    this.id = id;
   }
 
   public String getUsername() {
