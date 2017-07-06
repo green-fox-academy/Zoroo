@@ -2,40 +2,20 @@ package com.greenfox.zoroo.model;
 
 
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import org.springframework.stereotype.Component;
 
-@Entity
+@Component
 public class Question {
-  
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int userId;
-  @NotNull
+
   private String question;
-  @NotNull
   private DataType questionType;
-  @NotNull
   private String answer;
-  @NotNull
   private DataType answerType;
-  @NotNull
   private List<String> possibleAnswers;
-  @NotNull
   private int indexOfTheRightAnswerInThePossibleAnswers;
 
   public Question() {
-  }
 
-  public int getUserId() {
-    return userId;
-  }
-
-  public void setUserId(int userId) {
-    this.userId = userId;
   }
 
   public String getQuestion() {
