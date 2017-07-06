@@ -22,4 +22,4 @@ CREATE TABLE IF NOT EXISTS Geographic_Info (
   flag         VARCHAR(255) NOT NULL
 );
 INSERT INTO Geographic_Info (country, capital, language, continent, famousPerson, landmark, flag) VALUES
-  ('Hungary', 'Budapest', 'hungarian', 'Europe','George Soros', 'Hero Square','/hu.jpg');
+  ('Hungary', 'Budapest', 'hungarian', 'Europe','George Soros', 'Hero Square','hu.jpg');
