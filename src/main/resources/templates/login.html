@@ -5,7 +5,7 @@
     <title>Bejelentkezés</title>
 </head>
 <body>
-    <form th:action="@{/login}" method="post">
+    <form th:action="@{/login}" th:object="${loginFormDto}" method="post">
         <div><label> Felhasználónév: <input type="text" name="username"/></label></div>
         <div><label> Jelszó: <input type="password" name="password"/></label></div>
         <div><input type="submit" value="Bejelentkezés"/></div>
