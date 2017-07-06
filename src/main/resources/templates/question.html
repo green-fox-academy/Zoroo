@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Játék</title>
+    </head>
+    <body>
+        <p id="hidden" th:text="${user.id}"></p>
+        <p id="hidden" th:text="${question.good_index}"></p>
+        <h1 th:text="${question.question}">Kérdés</h1>
+        <ul>
+            <form action="/answer" th:each="answer, iter :${question.answers}" id="select">
+                <input type="hidden" name="index" th:value="${iter.index}"/>
+                <input type="submit" th:value="${answer}"/>
+            </form>
+        </ul>
+    </body>
+</html>
