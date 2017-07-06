@@ -84,3 +84,8 @@ select {
     width: 40%;
     height: 200px;
 }
+
+.login {
+    max-width: 300px;
+    margin: 10px auto;
+}

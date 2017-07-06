@@ -20,6 +20,12 @@ public class HomeController {
     return "index";
   }
 
+  @GetMapping(value = "/login")
+  public String getLoginPage(Model model) {
+    model.addAttribute("error", "Nem én voltam");
+    return "login";
+  }
+
   @GetMapping(value = "/main")
   public String getMenuPage(Model model) {
     UserProfile user = new UserProfile("Pistike");
