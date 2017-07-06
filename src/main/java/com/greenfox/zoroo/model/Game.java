@@ -21,6 +21,7 @@ public class Game {
 
   public Game() {
     gameId = gameRunningCounter.incrementAndGet();
+    totalQuestionsInThisGame = 10;
   }
 
   public int getGameId() {
@@ -51,13 +52,6 @@ public class Game {
     this.gameType = gameType;
   }
 
-  public int getTotalQuestionsInThisGame() {
-    return totalQuestionsInThisGame;
-  }
-
-  public void setTotalQuestionsInThisGame(int totalQuestionsInThisGame) {
-    this.totalQuestionsInThisGame = totalQuestionsInThisGame;
-  }
 
   public int getLevelOfHardness() {
     return levelOfHardness;

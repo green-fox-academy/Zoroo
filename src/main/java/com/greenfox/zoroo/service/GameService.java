@@ -25,31 +25,37 @@ public class GameService {
     game.setUserId(gameDTO.getUserId());
     game.setLevelOfHardness(gameDTO.getLevelOfHardness());
     game.setNumberOfAllTheAnswerPossibilities(gameDTO.getNumberOfAllTheAnswerPossibilities());
-    game.setTotalQuestionsInThisGame(10);
     game.setGameType(gameDTO.getGameType());
     allGames.add(game);
   }
 
-  private Game getGameById (int gameId){
+  private Game getGameById(int gameId) {
     Game gameToReturn = null;
-    for (Game game: allGames) {
-      if (gameId == game.getGameId())
+    for (Game game : allGames) {
+      if (gameId == game.getGameId()) {
         gameToReturn = game;
+      }
     }
     return gameToReturn;
   }
 
-  public Game playOneRound(int gameId) {
-    game = getGameById(gameId);
-    switch (game.getGameType()){
+  public Game playOneRound(Game game) {
+    game = getGameById(game.getGameId());
+    switch (game.getGameType()) {
       case MATHTIMETABLE:
         return playMathTimeTableGame(game);
+      case GEOGRAPHY:
+        return playGeographyGame(game);
     }
     return game;
   }
 
-  private Game playMathTimeTableGame(Game game){
+  private Game playMathTimeTableGame(Game game) {
     mathGame.playTimeTableGame(game);
+    return game;
+  }
+
+  private Game playGeographyGame(Game game) {
     return game;
   }
 }

@@ -2,7 +2,7 @@ package com.greenfox.zoroo.model;
 
 
 public enum GameType {
-  MATHTIMETABLE("MATHTIMETABLE"), MATHADDING("MATHADDING");
+  MATHTIMETABLE("MATHTIMETABLE"), MATHADDING("MATHADDING"), GEOGRAPHY("GEOGRAPHY");
 
   private final String gameTypeName;
 
