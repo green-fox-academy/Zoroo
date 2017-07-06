@@ -1,6 +1,7 @@
 package com.greenfox.zoroo.gameLogic;
 
 
+import com.greenfox.zoroo.model.Game;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +18,7 @@ public class MathGame {
   private int firstNumberMaxValue;
   private int secondNumberMaxValue;
   private int rightAnswer;
+  private String question;
   private List<String> possibleAnswers;
   private int indexOfTheRightAnswerInThePossibleAnswers;
   @Min(1)
@@ -24,6 +26,10 @@ public class MathGame {
   private int levelOfHardness;
   private int amountOfPossibleAnswers;
 
+
+  public String getQuestion() {
+    return question;
+  }
 
   public void setLevelOfHardness(int levelOfHardness) {
     this.levelOfHardness = levelOfHardness;
@@ -86,14 +92,19 @@ public class MathGame {
     }
   }
 
-  public void playTimeTableGame(int levelOfHardness, int amountOfPossibleAnswers) {
-    this.levelOfHardness = levelOfHardness;
-    this.amountOfPossibleAnswers = amountOfPossibleAnswers;
+  public void playTimeTableGame(Game game) {
+    this.levelOfHardness = game.getLevelOfHardness();
+    this.amountOfPossibleAnswers = game.getNumberOfAllTheAnswerPossibilities();
     setTimeTableMaxNumberValues();
     setRandomFirstAndSecondNumbers();
     rightAnswer = firstNumber * secondNumber;
+    setQuestion();
     setPossibleAnswersListForTimeTable();
     setIndexOfTheRightAnswerInThePossibleAnswers();
+  }
+
+  private void setQuestion(){
+    question = "How much is " + firstNumber + " * " + secondNumber + "?";
   }
 
   private void setPossibleAnswersListForTimeTable() {
