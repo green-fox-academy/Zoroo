@@ -1,0 +1,23 @@
+body {
+    font-family: 'Architects Daughter', cursive;
+}
+
+.yellow {
+    background-color: #ffbb15;
+}
+
+.blue {
+    background-color: #009cd6;
+}
+
+.green {
+    background-color: #7dfc28;
+}
+
+.red {
+    background-color: #b4003a;
+}
+
+.white {
+    color: #ffffff;
+}
