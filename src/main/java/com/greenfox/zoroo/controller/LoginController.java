@@ -15,6 +15,7 @@ public class LoginController {
 
   @Autowired
   UserRepo userRepo;
+
   @Autowired
   GeographicInfoRepo geographicInfoRepo;
 
