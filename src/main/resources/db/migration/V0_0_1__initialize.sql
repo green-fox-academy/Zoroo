@@ -4,8 +4,8 @@ CREATE TABLE IF NOT EXISTS User_Profile (
   id           BIGSERIAL PRIMARY KEY,
   username     VARCHAR(255) NOT NULL,
   password     VARCHAR(255) NOT NULL,
-  goodAnswers  INTEGER,
-  badAnswers   INTEGER
+  good_answers  INTEGER,
+  bad_answers   INTEGER
 );
 
 INSERT INTO User_Profile (username, password, goodAnswers,badAnswers) VALUES ('Mully','12345', 45, 69);
