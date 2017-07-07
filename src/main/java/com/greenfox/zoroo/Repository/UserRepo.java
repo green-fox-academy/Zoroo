@@ -12,4 +12,5 @@ public interface UserRepo extends CrudRepository<UserProfile, Long> {
   List<UserProfile> findAll();
   boolean existsByUsername(String username);
   boolean existsByPassword(String password);
+  UserProfile findByUsername(String username);
 }

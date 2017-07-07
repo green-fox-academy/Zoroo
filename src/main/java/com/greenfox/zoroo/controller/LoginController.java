@@ -27,7 +27,8 @@ public class LoginController {
     boolean passwordExist = userRepo.existsByPassword(loginFormDto.getPassword());
     if (usernameExist && passwordExist) {
       System.out.println(
-          "Username: " + loginFormDto.getUsername() + ", Password: " + loginFormDto.getPassword());
+          "Username: " + loginFormDto.getUsername() + ", Password: " + loginFormDto.getPassword()
+              + userRepo.findByUsername(loginFormDto.getUsername()).getUsername());
       return "redirect:/main";
     } else {
       model.addAttribute("error", "Username or Password are not correct!");
