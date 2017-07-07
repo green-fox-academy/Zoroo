@@ -2,6 +2,7 @@ package com.greenfox.zoroo.service;
 
 
 import com.greenfox.zoroo.Repository.UserRepo;
+import com.greenfox.zoroo.gameLogic.GeographicInfoGame;
 import com.greenfox.zoroo.gameLogic.MathGame;
 import com.greenfox.zoroo.model.Game;
 import com.greenfox.zoroo.model.GameDTO;
@@ -20,6 +21,9 @@ public class GameService {
 
   @Autowired
   MathGame mathGame;
+
+  @Autowired
+  GeographicInfoGame geographicInfoGame;
 
   List<Game> allGames;
 
@@ -80,6 +84,7 @@ public class GameService {
   }
 
   private Game playGeographyGame(Game game) {
+    geographicInfoGame.playGeographicGame(game);
     return game;
   }
 

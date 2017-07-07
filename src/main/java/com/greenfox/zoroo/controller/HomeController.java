@@ -21,11 +21,12 @@ public class HomeController {
   public String getIndexPage() {
     Game game = new Game();
     game.setGameType(GameType.GEOGRAPHY);
-    geographicInfoGame.setRandomCountry();
-    geographicInfoGame.setQuestionText(game);
-    geographicInfoGame.setRightAnswer(game);
-    geographicInfoGame.setPossibleAnswersListForGeographic(game);
-    geographicInfoGame.setIndexOfTheRightAnswerInThePossibleAnswers();
+    geographicInfoGame.playGeographicGame(game);
+//    geographicInfoGame.setRandomCountry();
+//    geographicInfoGame.setQuestionText(game);
+//    geographicInfoGame.setRightAnswer(game);
+//    geographicInfoGame.setPossibleAnswersListForGeographic(game);
+//    geographicInfoGame.setIndexOfTheRightAnswerInThePossibleAnswers();
     return "index";
   }
 }
