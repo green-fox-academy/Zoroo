@@ -1,9 +1,11 @@
 package com.greenfox.zoroo.controller;
 
+import com.greenfox.zoroo.Repository.UserRepo;
 import com.greenfox.zoroo.gameLogic.GeographicInfoGame;
 import com.greenfox.zoroo.model.Game;
 import com.greenfox.zoroo.model.GameType;
 import com.greenfox.zoroo.model.Question;
+import com.greenfox.zoroo.model.UserProfile;
 import com.greenfox.zoroo.model.dto.GameDto;
 import com.greenfox.zoroo.model.dto.UserProfileDto;
 import com.greenfox.zoroo.service.GameService;
@@ -20,12 +22,16 @@ public class GameController {
 
   private final GameService gameService;
   private final GeographicInfoGame geographicInfoGame;
+  private final UserRepo userRepo;
 
   @Autowired
-  public GameController(GameService gameService,
-      GeographicInfoGame geographicInfoGame) {
+  public GameController(
+      GameService gameService,
+      GeographicInfoGame geographicInfoGame,
+      UserRepo userRepo) {
     this.gameService = gameService;
     this.geographicInfoGame = geographicInfoGame;
+    this.userRepo = userRepo;
   }
 
   @PostMapping(value = {"/game", "/game/"})
@@ -47,7 +53,9 @@ public class GameController {
 
   @GetMapping(value = "/question")
   public String getQuestionPage(Model model) {
-    UserProfileDto user = new UserProfileDto(1L, "Pistike");
+    UserProfile loggedInUser = userRepo.findOne(1L);
+
+    UserProfileDto user = new UserProfileDto(loggedInUser.getId(), loggedInUser.getUsername());
     Question question = new Question();
 
     question.setQuestionText("18 + 24 = ?");
@@ -64,7 +72,7 @@ public class GameController {
     return "question";
   }
 
-  @GetMapping(value = {"/geographic","/geographic/"})
+  @GetMapping(value = {"/geographic", "/geographic/"})
   public String startGeographyGame() {
     Game game = new Game();
     game.setGameType(GameType.GEOGRAPHY);
