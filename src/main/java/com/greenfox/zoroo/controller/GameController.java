@@ -1,14 +1,45 @@
 package com.greenfox.zoroo.controller;
 
+import com.greenfox.zoroo.model.Game;
+import com.greenfox.zoroo.model.GameType;
 import com.greenfox.zoroo.model.Question;
+import com.greenfox.zoroo.model.dto.GameDto;
 import com.greenfox.zoroo.model.dto.UserProfileDto;
+import com.greenfox.zoroo.service.GameService;
 import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class GameController {
+
+  private final GameService gameService;
+
+  @Autowired
+  public GameController(GameService gameService) {
+    this.gameService = gameService;
+  }
+
+  @PostMapping(value = {"/game", "/game/"})
+  public ModelAndView startNewGame(ModelAndView modelAndView) {
+    GameDto gameDto =
+        GameDto.builder()
+            .userId(1L)
+            .gameType(GameType.MATHADDING)
+            .levelOfHardness(1)
+            .numberOfAllTheAnswerPossibilities(4)
+            .build();
+
+    Game newGame = gameService.createNewGame(gameDto);
+
+    modelAndView.setViewName("redirect:/question");
+    modelAndView.addObject(gameDto);
+    return modelAndView;
+  }
 
   @GetMapping(value = "/question")
   public String getQuestionPage(Model model) {
