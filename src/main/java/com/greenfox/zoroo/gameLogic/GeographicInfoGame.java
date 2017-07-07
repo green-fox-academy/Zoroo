@@ -28,6 +28,7 @@ public class GeographicInfoGame {
   @Max(10)
   private int levelOfHardness;
   private int amountOfPossibleAnswers;
+  private int geoType;
 
   @Autowired
   GeographicInfoRepo geographicInfoRepo;
@@ -41,7 +42,6 @@ public class GeographicInfoGame {
     this.levelOfHardness = game.getLevelOfHardness();
     this.amountOfPossibleAnswers = game.getNumberOfAllTheAnswerPossibilities();
     setRightAnswer(game);
-
     setQuestionText(game);
     setPossibleAnswersListForGeographic(game);
     setIndexOfTheRightAnswerInThePossibleAnswers();
@@ -65,27 +65,43 @@ public class GeographicInfoGame {
   }
 
   public void setRandomCountry() {
-    int randomNumber = getRandomNumber(10);
-    String country = geographicInfoRepo.findAll().get(randomNumber).getCountry();
+    int randomIndex = getRandomNumber(10);
+    String country = geographicInfoRepo.findAll().get(randomIndex).getCountry();
     geographicInfo.setCountry(country);
-    geographicInfo.setCapital(geographicInfoRepo.findAll().get(randomNumber).getCapital());
+    geographicInfo.setCapital(geographicInfoRepo.findAll().get(randomIndex).getCapital());
+    geographicInfo.setLanguage(geographicInfoRepo.findAll().get(randomIndex).getLanguage());
+    geographicInfo.setContinent(geographicInfoRepo.findAll().get(randomIndex).getContinent());
+    geographicInfo.setFamousPerson(geographicInfoRepo.findAll().get(randomIndex).getFamousPerson());
+    geographicInfo.setLandmark(geographicInfoRepo.findAll().get(randomIndex).getLandmark());
+    geographicInfo.setFlag(geographicInfoRepo.findAll().get(randomIndex).getFlag());
   }
 
   public void setQuestionText(Game game) {
-    switch (game.getGameType()) {
-      case "GEOGRAPHY":
-        setRandomCountry();
+
+    setRandomCountry();
+    this.geoType = getRandomNumber(2);
+    System.out.println(geoType);
+    switch (geoType) {
+      case 0:
         this.questionText = "What is the capital of " + geographicInfo.getCountry() + "?";
         break;
+      case 1:
+        this.questionText = "Who is the famous person of " + geographicInfo.getCountry() + "?";
+        break;
     }
+    System.out.println(questionText);
   }
 
   public void setRightAnswer(Game game) {
-    switch (game.getGameType()) {
-      case "GEOGRAPHY":
+    switch (geoType) {
+      case 0:
         rightAnswer = geographicInfo.getCapital();
         break;
+      case 1:
+        rightAnswer = geographicInfo.getFamousPerson();
+        break;
     }
+    System.out.println(rightAnswer);
   }
 
   public void setPossibleAnswersListForGeographic(Game game) {
@@ -93,10 +109,13 @@ public class GeographicInfoGame {
     possibleAnswers.add(rightAnswer);
     String otherAnswer = "";
     while (possibleAnswers.size() < amountOfPossibleAnswers) {
-      switch (game.getGameType()) {
-        case "GEOGRAPHY":
-          int randomNumber = getRandomNumber(10);
+      int randomNumber = getRandomNumber(10);
+      switch (geoType) {
+        case 0:
           otherAnswer = geographicInfoRepo.findAll().get(randomNumber).getCapital();
+          break;
+        case 1:
+          otherAnswer = geographicInfoRepo.findAll().get(randomNumber).getFamousPerson();
           break;
       }
       if (!possibleAnswers.contains(otherAnswer)) {
