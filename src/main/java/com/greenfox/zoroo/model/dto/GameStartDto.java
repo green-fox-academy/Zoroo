@@ -16,5 +16,5 @@ public class GameStartDto {
 
   private List<String> categories = new ArrayList<>(Arrays.asList("MATHADDING", "MATHDIVIDE", "MATHTIMETABLE", "MATHDEDUCT", "GEOGRAPHY"));
   private List<String> difficulties = new ArrayList<>(Arrays.asList("Easy", "Medium", "Challenge"));
-  private List<String> possibilities = new ArrayList<>(Arrays.asList("4", "5", "6"));
+  private List<String> possibilities = new ArrayList<>(Arrays.asList("4", "5", "6", "7", "8", "9", "10"));
 }
