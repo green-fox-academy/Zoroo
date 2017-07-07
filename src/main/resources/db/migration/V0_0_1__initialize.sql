@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS Geographic_Info (
   landmark     VARCHAR(255) NOT NULL,
   flag         VARCHAR(255) NOT NULL
 );
-INSERT INTO Geographic_Info (country, capital, language, continent, famousPerson, landmark, flag) VALUES
+INSERT INTO Geographic_Info (country, capital, language, continent, famous_person, landmark, flag) VALUES
   ('Iran', 'Tehran', 'Persian/Farsi','Asia','Razi: Alcohol inventor!','Freedom Square', 'IR.jpg'),
   ('Germany', 'Berlin', 'German','Europe','Angela Merkel: Chancellor','Berlin Tower', 'DE.jpg'),
   ('France', 'Paris', 'French','Europe','Coco Chanel: Parfum inventor! ','Eiffel Tower', 'FR.jpg'),
