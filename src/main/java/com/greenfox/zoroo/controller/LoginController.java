@@ -15,8 +15,7 @@ public class LoginController {
 
   @Autowired
   UserRepo userRepo;
-  @Autowired
-  GeographicInfoRepo geographicInfoRepo;
+
 
   @GetMapping(value = {"/login", "/login/"})
   public String getLoginPage(Model model, LoginFormDto loginFormDto) {
@@ -32,7 +31,6 @@ public class LoginController {
     if (usernameExist && passwordExist) {
       System.out.println(
           "Username: " + loginFormDto.getUsername() + ", Password: " + loginFormDto.getPassword());
-      System.out.println(geographicInfoRepo.findAll().get(0).getCountry());
       return "redirect:/main";
     } else {
       model.addAttribute("error", "Username or Password are not correct!");
