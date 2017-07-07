@@ -17,8 +17,8 @@ public class MathGame {
 
   private int firstNumber;
   private int secondNumber;
-  private int firstNumberMaxValue;
-  private int secondNumberMaxValue;
+  private int firstNumberMaxValue = 5;
+  private int secondNumberMaxValue = 10;
   private int rightAnswer;
   private String questionText;
   private List<String> possibleAnswers;
