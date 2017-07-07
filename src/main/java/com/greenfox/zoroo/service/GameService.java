@@ -88,6 +88,6 @@ public class GameService {
   }
 
   public List<UserProfile> topPlayersList(){
-    return userRepo.findTop10ByOrderByPrecentageDesc();
+    return userRepo.findTop10ByOrderByGoodAnswersDesc();
   }
 }
