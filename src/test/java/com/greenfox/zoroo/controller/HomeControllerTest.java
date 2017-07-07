@@ -45,12 +45,4 @@ public class HomeControllerTest {
         .andExpect(content().contentType(CONTENT_TYPE_HTML))
         .andDo(print());
   }
-
-  @Test
-  public void getQuestionPage() throws Exception {
-    mockMvc.perform(get("/question"))
-        .andExpect(status().isOk())
-        .andExpect(content().contentType(CONTENT_TYPE_HTML))
-        .andDo(print());
-  }
 }
