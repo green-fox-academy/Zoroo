@@ -40,10 +40,9 @@ public class LoginController {
     }
   }
 
-  @GetMapping(value = "/register")
+  @GetMapping(value = {"/register", "/register/"})
   public String getRegisterPage(Model model, LoginFormDto loginFormDto) {
     model.addAttribute("loginDto", loginFormDto);
     return "register";
   }
-
 }
