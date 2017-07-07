@@ -9,6 +9,7 @@ public class Game {
 
   private int gameId;
   private int userId;
+  private String userName;
   private Question question;
   private GameType gameType;
   private int totalQuestionsInThisGame;
@@ -34,6 +35,14 @@ public class Game {
 
   public void setUserId(int userId) {
     this.userId = userId;
+  }
+
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
   public Question getQuestion() {

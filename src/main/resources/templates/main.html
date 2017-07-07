@@ -12,28 +12,27 @@
     <!--/*@thymesVar id="game" type="com.greenfox.zoroo.model.dto.GameStartDto"*/-->
     <h1 th:text="'Üdv ' + ${user.username}">Üdv felhasználó</h1>
     <ul class="navlinks">
-        <li class="navitem">
-            <a>Játék</a>
-        </li>
-        <li class="navitem">
-            <a>Statisztika</a>
-        </li>
-        <li class="navitem">
-            <a>Kijelentkezés</a>
+        <li class="navitem" th:each="link: ${nav}">
+            <a th:href="${link.address}" th:text="${link.text}"/>
         </li>
     </ul>
     <div class="container">
         <div class="selection list-group col-md-5">
-            <h2>Válassz témakört</h2>
-            <select name="category" th:size="${#lists.size(game.categories)}">
+            <h2 class="text-center">Válassz témakört</h2>
+            <select class="center-block" name="category" th:size="${#lists.size(game.categories)}">
                 <option class="selection-item list-group-item" th:each="category : ${game.categories}" th:text="${category}"></option>
             </select>
         </div>
         <div class="selection list-group col-md-5">
             <h2>Válassz nehézségi szintet</h2>
-            <select name="difficulty" th:size="${#lists.size(game.difficulties)}">
-                <option class="selection-item list-group-item" th:each="difficulty : ${game.difficulties}" th:text="${difficulty}"></option>
+            <select class="form-control">
+                <option th:each="difficulty : ${game.difficulties}" th:text="${difficulty}"></option>
             </select>
+            <h3>Válaszlehetőségek</h3>
+            <select class="form-control">
+                <option th:each="possibility : ${game.possibilities}" th:text="${possibility}"></option>
+            </select>
+            <br/>
         </div>
     </div>
     <div class="text-center">

@@ -27,6 +27,7 @@ public class GameService {
   public void createNewGame(GameDTO gameDTO) {
     Game game = new Game();
     game.setUserId(gameDTO.getUserId());
+    game.setUserName(userRepo.findById(gameDTO.getUserId()).getUsername());
     game.setLevelOfHardness(gameDTO.getLevelOfHardness());
     game.setNumberOfAllTheAnswerPossibilities(gameDTO.getNumberOfAllTheAnswerPossibilities());
     game.setGameType(gameDTO.getGameType());
@@ -43,8 +44,24 @@ public class GameService {
     return gameToReturn;
   }
 
+  public Game analizeOneRound(Game game, int indexOfUserAnswer){
+    int rightAnswerIndex = game.getQuestion().getGoodAnswerIndex();
+    if (indexOfUserAnswer == rightAnswerIndex){
+      game.getQuestion().setUserAnswerRight(true);
+      int pointsForThisQuestion = game.getLevelOfHardness() * game.getNumberOfAllTheAnswerPossibilities();
+      game.getQuestion().setThisQuestionPointValue(pointsForThisQuestion);
+      game.setRightAnswersSoFar(game.getRightAnswersSoFar() + 1);
+    }else {
+      game.getQuestion().setUserAnswerRight(false);
+      game.getQuestion().setThisQuestionPointValue(0);
+      game.setWrongAnswersSoFar(game.getWrongAnswersSoFar() + 1);
+    }
+    return game;
+  }
+
   public Game playOneRound(Game game) {
     game = getGameById(game.getGameId());
+    game.getQuestion().setUserAnswerRight(false);
     if (game.getThisQuestionsNumber() == 10) {
       gameIsOver(game);
     }
@@ -79,5 +96,10 @@ public class GameService {
     userProfileToUpdate.setTotalNumberOfQuestionsAnswered(
             userProfileToUpdate.getTotalNumberOfQuestionsAnswered() + game
                     .getThisQuestionsNumber());
+    userRepo.save(userProfileToUpdate);
+  }
+
+  public List<UserProfile> topPlayersList(){
+    return userRepo.findTop10ByOrderByGoodAnswersDesc();
   }
 }

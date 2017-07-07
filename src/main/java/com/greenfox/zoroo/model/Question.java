@@ -11,7 +11,10 @@ public class Question {
   private DataType questionType;
   private DataType answerType;
   private List<String> possibleAnswers;
-  private int goodIndex;
+  private int goodAnswerIndex;
+  private int userAnswerIndex;
+  private boolean isUserAnswerRight;
+  private int thisQuestionPointValue;
 
   public Question() {
 
@@ -49,13 +52,37 @@ public class Question {
     this.possibleAnswers = possibleAnswers;
   }
 
-  public int getGoodIndex() {
-    return goodIndex;
+  public int getGoodAnswerIndex() {
+    return goodAnswerIndex;
   }
 
-  public void setGoodIndex(
-          int goodIndex) {
-    this.goodIndex = goodIndex;
+  public void setGoodAnswerIndex(
+          int goodAnswerIndex) {
+    this.goodAnswerIndex = goodAnswerIndex;
+  }
+
+  public int getUserAnswerIndex() {
+    return userAnswerIndex;
+  }
+
+  public void setUserAnswerIndex(int userAnswerIndex) {
+    this.userAnswerIndex = userAnswerIndex;
+  }
+
+  public boolean isUserAnswerRight() {
+    return isUserAnswerRight;
+  }
+
+  public void setUserAnswerRight(boolean userAnswerRight) {
+    isUserAnswerRight = userAnswerRight;
+  }
+
+  public int getThisQuestionPointValue() {
+    return thisQuestionPointValue;
+  }
+
+  public void setThisQuestionPointValue(int thisQuestionPointValue) {
+    this.thisQuestionPointValue = thisQuestionPointValue;
   }
 }
 

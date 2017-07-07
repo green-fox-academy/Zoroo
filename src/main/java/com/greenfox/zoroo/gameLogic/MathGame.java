@@ -33,9 +33,7 @@ public class MathGame {
     this.amountOfPossibleAnswers = game.getNumberOfAllTheAnswerPossibilities();
     setTimeTableMaxNumberValues(game);
     setRandomFirstAndSecondNumbers();
-
     setRightAnswer(game);
-
     setQuestionText(game);
     setPossibleAnswersListForTimeTable(game);
     setIndexOfTheRightAnswerInThePossibleAnswers();
@@ -164,7 +162,7 @@ public class MathGame {
     question.setAnswerType(DataType.TEXT);
     question.setQuestionType(DataType.TEXT);
     question.setQuestionText(questionText);
-    question.setGoodIndex(
+    question.setGoodAnswerIndex(
             indexOfTheRightAnswerInThePossibleAnswers);
     question.setPossibleAnswers(possibleAnswers);
     return question;
@@ -179,6 +177,12 @@ public class MathGame {
       case MATHADDING:
         questionText = "How much is " + firstNumber + " + " + secondNumber + "?";
         break;
+      case MATHDEDUCT:
+        questionText = "How much is " + firstNumber + " - " + secondNumber + "?";
+        break;
+      case MATHDIVIDE:
+        questionText = "How much is " + firstNumber + " / " + secondNumber + "?";
+        break;
     }
   }
 
@@ -191,6 +195,8 @@ public class MathGame {
         rightAnswer = firstNumber + secondNumber;
         break;
       case MATHDIVIDE:
+        int finalFirstNumber = firstNumber * secondNumber;
+        firstNumber = finalFirstNumber;
         rightAnswer = firstNumber / secondNumber;
         break;
       case MATHDEDUCT:
@@ -214,6 +220,8 @@ public class MathGame {
           otherAnswer = String.valueOf(firstNumber + secondNumber);
           break;
         case MATHDIVIDE:
+          int finalFirstNumber = firstNumber * secondNumber;
+          firstNumber = finalFirstNumber;
           otherAnswer = String.valueOf(firstNumber / secondNumber);
           break;
         case MATHDEDUCT:

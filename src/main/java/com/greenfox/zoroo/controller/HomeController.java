@@ -28,23 +28,4 @@ public class HomeController {
     geographicInfoGame.setIndexOfTheRightAnswerInThePossibleAnswers();
     return "index";
   }
-
-  @GetMapping(value = "/question")
-  public String getQuestionPage(Model model) {
-    UserProfileDto user = new UserProfileDto(1L, "Pistike");
-    Question question = new Question();
-
-    question.setQuestionText("18 + 24 = ?");
-    question.setGoodIndex(1);
-    ArrayList<String> answers = new ArrayList<>();
-    answers.add("42");
-    answers.add("38");
-    answers.add("15");
-    answers.add("-6");
-    question.setPossibleAnswers(answers);
-
-    model.addAttribute("user", user);
-    model.addAttribute("question", question);
-    return "question";
-  }
 }
