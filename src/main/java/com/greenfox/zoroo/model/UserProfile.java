@@ -1,5 +1,6 @@
 package com.greenfox.zoroo.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,9 @@ public class UserProfile {
   private String username;
   @NotNull
   private String password;
+  @Column(name = "good_answers")
   private int goodAnswers;
+  @Column(name = "bad_answers")
   private int badAnswers;
   @Transient
   private int totalNumberOfQuestionsAnswered;
