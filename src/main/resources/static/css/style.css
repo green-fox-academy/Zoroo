@@ -29,7 +29,7 @@ body {
 
 .selection {
     background-color: #009cd6;
-    border-radius: 10px;
+    border-radius: 15px 50px 30px;
     padding: 10px;
     border: 2px solid #000088;
     box-shadow: 2px 2px 5px #000000;

@@ -24,8 +24,8 @@
     </ul>
     <div class="container">
         <div class="selection list-group col-md-5">
-            <h2>Válassz témakört</h2>
-            <select name="category" th:size="${#lists.size(game.categories)}">
+            <h2 class="text-center">Válassz témakört</h2>
+            <select class="center-block" name="category" th:size="${#lists.size(game.categories)}">
                 <option class="selection-item list-group-item" th:each="category : ${game.categories}" th:text="${category}"></option>
             </select>
         </div>
@@ -38,6 +38,7 @@
             <select class="form-control">
                 <option th:each="possibility : ${game.possibilities}" th:text="${possibility}"></option>
             </select>
+            <br/>
         </div>
     </div>
     <div class="text-center">
