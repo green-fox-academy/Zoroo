@@ -111,3 +111,11 @@ th {
 .first {
     color: #ffffff;
 }
+
+th:last-child {
+    border-radius: 0px 50px 0px 0px;
+}
+
+th:first-child {
+    border-radius: 15px 0px 0px 0px;
+}

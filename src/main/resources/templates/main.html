@@ -12,14 +12,8 @@
     <!--/*@thymesVar id="game" type="com.greenfox.zoroo.model.dto.GameStartDto"*/-->
     <h1 th:text="'Üdv ' + ${user.username}">Üdv felhasználó</h1>
     <ul class="navlinks">
-        <li class="navitem">
-            <a>Játék</a>
-        </li>
-        <li class="navitem">
-            <a>Statisztika</a>
-        </li>
-        <li class="navitem">
-            <a>Kijelentkezés</a>
+        <li class="navitem" th:each="link: ${nav}">
+            <a th:href="${link.address}" th:text="${link.text}"/>
         </li>
     </ul>
     <div class="container">
