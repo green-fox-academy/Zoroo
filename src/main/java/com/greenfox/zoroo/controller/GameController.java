@@ -38,21 +38,22 @@ public class GameController {
   @PostMapping(value = "/question")
   public String getQuestionPage(GameDto game, Model model) {
 
-    gameService.createNewGame(game);
+    Game currentGame = gameService.createNewGame(game);
+    currentGame = gameService.playOneRound(currentGame);
 
-    Question question = new Question();
-
-    question.setQuestionText("18 + 24 = ?");
-    question.setGoodAnswerIndex(1);
-    ArrayList<String> answers = new ArrayList<>();
-    answers.add("42");
-    answers.add("38");
-    answers.add("15");
-    answers.add("-6");
-    question.setPossibleAnswers(answers);
-
+//    Question question = new Question();
+//
+//    question.setQuestionText("18 + 24 = ?");
+//    question.setGoodAnswerIndex(1);
+//    ArrayList<String> answers = new ArrayList<>();
+//    answers.add("42");
+//    answers.add("38");
+//    answers.add("15");
+//    answers.add("-6");
+//    question.setPossibleAnswers(answers);
+//
     model.addAttribute("user", userRepo.findOne(game.getUserId()).getUsername());
-    model.addAttribute("question", question);
+    model.addAttribute("game", currentGame);
     return "question";
   }
 

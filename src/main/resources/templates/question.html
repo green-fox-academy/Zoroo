@@ -8,11 +8,13 @@
         <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet"/>
     </head>
     <body>
-        <p id="hidden" th:text="${user.userId}"></p>
-        <p id="hidden" th:text="${question.goodAnswerIndex}"></p>
-        <h1 class="selection question" th:text="${question.questionText}">Kérdés</h1>
+        <!--<p id="hidden" th:text="${user}"></p>-->
+        <!--&lt;!&ndash;/*@thymesVar id="game" type="com.greenfox.zoroo.model.Game"*/&ndash;&gt;-->
+        <!--&lt;!&ndash;/*@thymesVar id="question" type="com.greenfox.zoroo.model.Question"*/&ndash;&gt;-->
+        <!--<p id="hidden" th:text="${game.getQuestion().getGoodAnswerIndex()}"></p>-->
+        <h1 class="selection question" th:text="${game.question.questionText}">Kérdés</h1>
         <ul>
-            <form style="display:inline" action="/answer" th:each="answer, iter :${question.possibleAnswers}" id="select">
+            <form style="display:inline" action="/answer" th:each="answer, iter :${game.question.possibleAnswers}" id="select">
                 <input type="hidden" name="index" th:value="${iter.index}"/>
                 <input class="selection answer btn btn-primary" type="submit" th:value="${answer}"/>
             </form>

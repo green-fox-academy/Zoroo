@@ -42,7 +42,7 @@ public class MathGame {
 
   private int getRandomNumber(int maxValue) {
     Random r = new Random();
-    return r.nextInt(maxValue - 1) + 1;
+    return r.nextInt(maxValue) + 1;
   }
 
   private void setRandomFirstAndSecondNumbers() {

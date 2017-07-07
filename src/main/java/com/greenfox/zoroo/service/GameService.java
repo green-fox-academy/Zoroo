@@ -7,6 +7,7 @@ import com.greenfox.zoroo.model.Game;
 import com.greenfox.zoroo.model.dto.GameDto;
 import com.greenfox.zoroo.model.GameType;
 import com.greenfox.zoroo.model.UserProfile;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class GameService {
   @Autowired
   MathGame mathGame;
 
-  List<Game> allGames;
+  List<Game> allGames = new ArrayList<>();
 
 
   public Game createNewGame(GameDto gameDto) {
@@ -63,12 +64,11 @@ public class GameService {
 
   public Game playOneRound(Game game) {
     game = getGameById(game.getGameId());
-    game.getQuestion().setUserAnswerRight(false);
     if (game.getThisQuestionsNumber() == 10) {
       gameIsOver(game);
     }
     game.setThisQuestionsNumber(game.getThisQuestionsNumber() + 1);
-    if (game.getGameType().equals(GameType.GEOGRAPHY)) {
+    if (game.getGameType().equals("GEOGRAPHY")) {
       game = playGeographyGame(game);
     } else {
       game = playMathGame(game);
