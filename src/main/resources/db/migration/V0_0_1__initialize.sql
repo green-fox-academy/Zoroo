@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS Geographic_Info (
   capital      VARCHAR(255) NOT NULL,
   language     VARCHAR(255) NOT NULL,
   continent    VARCHAR(255) NOT NULL,
-  famousPerson VARCHAR(255) NOT NULL,
+  famous_person VARCHAR(255) NOT NULL,
   landmark     VARCHAR(255) NOT NULL,
   flag         VARCHAR(255) NOT NULL
 );
@@ -29,6 +29,7 @@ INSERT INTO Geographic_Info (country, capital, language, continent, famousPerson
   ('Italy', 'Rome', 'Italian','Europe','Sophia Loren: Beauty inventor! ','Vatican', 'IT.jpg'),
   ('England', 'London', 'English','Europe','Queen: Palace inventor! ','Greenwich', 'UK.jpg'),
   ('USA', 'Washington', 'English','America','Trump: "covfefe" inventor! ','Greenwich', 'US.jpg'),
-  ('Japan', 'Tokyo', 'Japanese','Asia','Trump: "covfefe" inventor! ','Greenwich', 'US.jpg'),
+  ('Japan', 'Tokyo', 'Japanese','Asia','Kotaro Honda: Honda inventor! ','Fuji', 'JP.jpg'),
+  ('Russia', 'Moscow', 'Russian','Asia','Putin: KGB inventor! ','Kremlin', 'RU.jpg'),
   ('Hungary', 'Budapest', 'hungarian', 'Europe','George Soros: EU inventor!', 'Hero Square','HU.jpg');
 
