@@ -8,4 +8,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface GeographicInfoRepo extends CrudRepository<GeographicInfo, Long> {
 
   List<GeographicInfo> findAll();
+  GeographicInfo findByCountry(String country);
  }
