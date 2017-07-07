@@ -1,5 +1,6 @@
 package com.greenfox.zoroo.controller;
 
+import com.greenfox.zoroo.gameLogic.GeographicInfoGame;
 import com.greenfox.zoroo.model.Game;
 import com.greenfox.zoroo.model.GameType;
 import com.greenfox.zoroo.model.Question;
@@ -18,10 +19,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class GameController {
 
   private final GameService gameService;
+  private final GeographicInfoGame geographicInfoGame;
 
   @Autowired
-  public GameController(GameService gameService) {
+  public GameController(GameService gameService,
+      GeographicInfoGame geographicInfoGame) {
     this.gameService = gameService;
+    this.geographicInfoGame = geographicInfoGame;
   }
 
   @PostMapping(value = {"/game", "/game/"})
@@ -58,5 +62,17 @@ public class GameController {
     model.addAttribute("user", user);
     model.addAttribute("question", question);
     return "question";
+  }
+
+  @GetMapping(value = {"/geographic","/geographic/"})
+  public String startGeographyGame() {
+    Game game = new Game();
+    game.setGameType(GameType.GEOGRAPHY);
+    geographicInfoGame.setRandomCountry();
+    geographicInfoGame.setQuestionText(game);
+    geographicInfoGame.setRightAnswer(game);
+    geographicInfoGame.setPossibleAnswersListForGeographic(game);
+    geographicInfoGame.setIndexOfTheRightAnswerInThePossibleAnswers();
+    return "index";
   }
 }
