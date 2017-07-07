@@ -123,7 +123,7 @@ public class MathGame {
     question.setAnswerType(DataType.TEXT);
     question.setQuestionType(DataType.TEXT);
     question.setQuestionText(questionText);
-    question.setIndexOfTheRightAnswerInThePossibleAnswers(
+    question.setGoodIndex(
             indexOfTheRightAnswerInThePossibleAnswers);
     question.setPossibleAnswers(possibleAnswers);
     return question;

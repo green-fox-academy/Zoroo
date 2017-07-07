@@ -1,16 +1,14 @@
 package com.greenfox.zoroo.model.dto;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+public class UserProfileDto {
 
-  @Setter(AccessLevel.NONE)
+  private Long userId;
   private String username;
 }

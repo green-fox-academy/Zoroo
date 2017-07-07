@@ -13,6 +13,7 @@ public class UserProfile {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
+
   @NotNull
   private String username;
   @NotNull

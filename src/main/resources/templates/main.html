@@ -3,32 +3,43 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Főoldal - menü</title>
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet"/>
 </head>
 <body>
     <!--/*@thymesVar id="user" type="com.greenfox.zoroo.model.dto.UserDto"*/-->
     <!--/*@thymesVar id="game" type="com.greenfox.zoroo.model.dto.GameStartDto"*/-->
-    <h1 th:text="'Üdv ' + ${user.name}">Üdv felhasználó</h1>
-    <ul id="navlinks">
-        <li>Játék</li>
-        <li>Statisztika</li>
-        <li>Kijelentkezés</li>
+    <h1 th:text="'Üdv ' + ${user.username}">Üdv felhasználó</h1>
+    <ul class="navlinks">
+        <li class="navitem">
+            <a>Játék</a>
+        </li>
+        <li class="navitem">
+            <a>Statisztika</a>
+        </li>
+        <li class="navitem">
+            <a>Kijelentkezés</a>
+        </li>
     </ul>
-    <div>
-        <h2>Válassz témakört</h2>
-        <ul>
-            <li th:each="category : ${game.categories}">
-                <p th:text="${category}"></p>
-            </li>
-        </ul>
+    <div class="container">
+        <div class="selection list-group col-md-5">
+            <h2>Válassz témakört</h2>
+            <select name="category" th:size="${#lists.size(game.categories)}">
+                <option class="selection-item list-group-item" th:each="category : ${game.categories}" th:text="${category}"></option>
+            </select>
+        </div>
+        <div class="selection list-group col-md-5">
+            <h2>Válassz nehézségi szintet</h2>
+            <select name="difficulty" th:size="${#lists.size(game.difficulties)}">
+                <option class="selection-item list-group-item" th:each="difficulty : ${game.difficulties}" th:text="${difficulty}"></option>
+            </select>
+        </div>
     </div>
-    <div>
-        <h2>Válassz nehézségi szintet</h2>
-        <ul>
-            <li th:each="difficulty : ${game.difficulties}">
-                <p th:text="${difficulty}"></p>
-            </li>
-        </ul>
+    <div class="text-center">
+        <a class="btn btn-primary" th:href="@{/startgame}">Kezdhetjük</a>
     </div>
-    <a th:href="@{/startgame}">Kezdhetjük</a>
+    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 </body>
 </html>
