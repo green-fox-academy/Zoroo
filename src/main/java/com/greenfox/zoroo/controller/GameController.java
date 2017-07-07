@@ -35,28 +35,11 @@ public class GameController {
     this.userRepo = userRepo;
   }
 
-  @PostMapping(value = {"/game", "/game/"})
-  public ModelAndView startNewGame(ModelAndView modelAndView) {
-    GameDto gameDto =
-        GameDto.builder()
-            .userId(1L)
-            .gameType("MATHADDING")
-            .levelOfHardness(1)
-            .numberOfAllTheAnswerPossibilities(4)
-            .build();
-
-    Game newGame = gameService.createNewGame(gameDto);
-
-    modelAndView.setViewName("redirect:/question");
-    modelAndView.addObject(gameDto);
-    return modelAndView;
-  }
-
   @PostMapping(value = "/question")
   public String getQuestionPage(GameDto game, Model model) {
-    UserProfile loggedInUser = userRepo.findOne(1L);
 
-    UserProfileDto user = new UserProfileDto(loggedInUser.getId(), loggedInUser.getUsername());
+    gameService.createNewGame(game);
+
     Question question = new Question();
 
     question.setQuestionText("18 + 24 = ?");
@@ -68,7 +51,7 @@ public class GameController {
     answers.add("-6");
     question.setPossibleAnswers(answers);
 
-    model.addAttribute("user", user);
+    model.addAttribute("user", userRepo.findOne(game.getUserId()).getUsername());
     model.addAttribute("question", question);
     return "question";
   }
