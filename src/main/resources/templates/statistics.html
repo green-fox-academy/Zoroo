@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Statisztikák</title>
+        <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" th:href="@{/css/style.css}"/>
+        <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet"/>
+    </head>
+    <body>
+        <h1 th:text="'Üdv ' + ${user.username}">Üdv felhasználó</h1>
+        <ul class="navlinks">
+            <li class="navitem" th:each="link: ${nav}">
+                <a th:href="${link.address}" th:text="${link.text}"/>
+            </li>
+        </ul>
+        <table class="selection">
+            <tr>
+                <th>Felhasználó</th>
+                <th>Pontok</th>
+                <th>Átlag</th>
+            </tr>
+            <tr class="first">
+                <td>Norbi</td>
+                <td>977</td>
+                <td>97%</td>
+            </tr>
+            <tr>
+                <td>Ramin</td>
+                <td>779</td>
+                <td>92%</td>
+            </tr>
+            <tr>
+                <td>Milan</td>
+                <td>666</td>
+                <td>85%</td>
+            </tr>
+            <tr>
+                <td>Marcell</td>
+                <td>576</td>
+                <td>70%</td>
+            </tr>
+        </table>
+
+        <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+        <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    </body>
+</html>
