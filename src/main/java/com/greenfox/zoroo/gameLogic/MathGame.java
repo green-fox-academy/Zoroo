@@ -28,25 +28,18 @@ public class MathGame {
   private int levelOfHardness;
   private int amountOfPossibleAnswers;
 
+  public void playMathGame(Game game) {
+    this.levelOfHardness = game.getLevelOfHardness();
+    this.amountOfPossibleAnswers = game.getNumberOfAllTheAnswerPossibilities();
+    setTimeTableMaxNumberValues(game);
+    setRandomFirstAndSecondNumbers();
 
-  public String getQuestionText() {
-    return questionText;
-  }
+    setRightAnswer(game);
 
-  public void setLevelOfHardness(int levelOfHardness) {
-    this.levelOfHardness = levelOfHardness;
-  }
-
-  public void setAmountOfPossibleAnswers(int amountOfPossibleAnswers) {
-    this.amountOfPossibleAnswers = amountOfPossibleAnswers;
-  }
-
-  public List<String> getPossibleAnswers() {
-    return possibleAnswers;
-  }
-
-  public int getIndexOfTheRightAnswerInThePossibleAnswers() {
-    return indexOfTheRightAnswerInThePossibleAnswers;
+    setQuestionText(game);
+    setPossibleAnswersListForTimeTable(game);
+    setIndexOfTheRightAnswerInThePossibleAnswers();
+    game.setQuestion(setTheQuestionsForThisGame());
   }
 
   private int getRandomNumber(int maxValue) {
@@ -59,7 +52,24 @@ public class MathGame {
     secondNumber = getRandomNumber(secondNumberMaxValue);
   }
 
-  private void setTimeTableMaxNumberValues() {
+  private void setTimeTableMaxNumberValues(Game game) {
+    switch (game.getGameType()) {
+      case MATHTIMETABLE:
+        setTimeTableMaxValues();
+        break;
+      case MATHADDING:
+        setAddingsMaxValues();
+        break;
+      case MATHDIVIDE:
+        setTimeTableMaxValues();
+        break;
+      case MATHDEDUCT:
+        setAddingsMaxValues();
+        break;
+    }
+  }
+
+  private void setTimeTableMaxValues() {
     switch (levelOfHardness) {
       case 1:
         firstNumberMaxValue = 5;
@@ -104,18 +114,49 @@ public class MathGame {
     }
   }
 
-  public void playTimeTableGame(Game game) {
-    this.levelOfHardness = game.getLevelOfHardness();
-    this.amountOfPossibleAnswers = game.getNumberOfAllTheAnswerPossibilities();
-    setTimeTableMaxNumberValues();
-    setRandomFirstAndSecondNumbers();
-    setRightAnswer(game);
-    setQuestionText(game);
-    setPossibleAnswersListForTimeTable(game);
-    setIndexOfTheRightAnswerInThePossibleAnswers();
-    game.setQuestion(setTheQuestionsForThisGame());
-
-
+  private void setAddingsMaxValues() {
+    switch (levelOfHardness) {
+      case 1:
+        firstNumberMaxValue = 10;
+        secondNumberMaxValue = 10;
+        break;
+      case 2:
+        firstNumberMaxValue = 20;
+        secondNumberMaxValue = 10;
+        break;
+      case 3:
+        firstNumberMaxValue = 20;
+        secondNumberMaxValue = 20;
+        break;
+      case 4:
+        firstNumberMaxValue = 40;
+        secondNumberMaxValue = 40;
+        break;
+      case 5:
+        firstNumberMaxValue = 80;
+        secondNumberMaxValue = 80;
+        break;
+      case 6:
+        firstNumberMaxValue = 100;
+        secondNumberMaxValue = 200;
+        break;
+      case 7:
+        firstNumberMaxValue = 500;
+        secondNumberMaxValue = 500;
+        break;
+      case 8:
+        firstNumberMaxValue = 1000;
+        secondNumberMaxValue = 1000;
+        break;
+      case 9:
+        firstNumberMaxValue = 5000;
+        secondNumberMaxValue = 5000;
+        break;
+      case 10:
+        firstNumberMaxValue = 10000;
+        secondNumberMaxValue = 10000;
+        break;
+    }
   }
 
   private Question setTheQuestionsForThisGame() {
@@ -149,9 +190,13 @@ public class MathGame {
       case MATHADDING:
         rightAnswer = firstNumber + secondNumber;
         break;
+      case MATHDIVIDE:
+        rightAnswer = firstNumber / secondNumber;
+        break;
+      case MATHDEDUCT:
+        rightAnswer = firstNumber - secondNumber;
+        break;
     }
-
-
   }
 
 
@@ -161,12 +206,18 @@ public class MathGame {
     String otherAnswer = "";
     while (possibleAnswers.size() < amountOfPossibleAnswers) {
       setRandomFirstAndSecondNumbers();
-      switch (game.getGameType()){
+      switch (game.getGameType()) {
         case MATHTIMETABLE:
           otherAnswer = String.valueOf(firstNumber * secondNumber);
           break;
         case MATHADDING:
           otherAnswer = String.valueOf(firstNumber + secondNumber);
+          break;
+        case MATHDIVIDE:
+          otherAnswer = String.valueOf(firstNumber / secondNumber);
+          break;
+        case MATHDEDUCT:
+          otherAnswer = String.valueOf(firstNumber - secondNumber);
           break;
       }
       if (!possibleAnswers.contains(otherAnswer)) {

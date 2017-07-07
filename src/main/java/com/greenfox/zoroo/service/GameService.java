@@ -1,15 +1,19 @@
 package com.greenfox.zoroo.service;
 
 
+import com.greenfox.zoroo.Repository.UserRepo;
 import com.greenfox.zoroo.gameLogic.MathGame;
-import com.greenfox.zoroo.model.DataType;
 import com.greenfox.zoroo.model.Game;
 import com.greenfox.zoroo.model.GameDTO;
-import com.greenfox.zoroo.model.Question;
+import com.greenfox.zoroo.model.GameType;
+import com.greenfox.zoroo.model.UserProfile;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class GameService {
+
+  @Autowired
+  UserRepo userRepo;
 
   @Autowired
   Game game;
@@ -41,21 +45,39 @@ public class GameService {
 
   public Game playOneRound(Game game) {
     game = getGameById(game.getGameId());
-    switch (game.getGameType()) {
-      case MATHTIMETABLE:
-        return playMathTimeTableGame(game);
-      case GEOGRAPHY:
-        return playGeographyGame(game);
+    if (game.getThisQuestionsNumber() == 10) {
+      gameIsOver(game);
+    }
+    game.setThisQuestionsNumber(game.getThisQuestionsNumber() + 1);
+    if (game.getGameType().equals(GameType.GEOGRAPHY)) {
+      game = playGeographyGame(game);
+    } else {
+      game = playMathGame(game);
     }
     return game;
   }
 
-  private Game playMathTimeTableGame(Game game) {
-    mathGame.playTimeTableGame(game);
+  private Game playMathGame(Game game) {
+    mathGame.playMathGame(game);
     return game;
   }
 
   private Game playGeographyGame(Game game) {
     return game;
+  }
+
+  private void gameIsOver(Game game) {
+    endOfTheGameUpdateUserProfile(game);
+  }
+
+  private void endOfTheGameUpdateUserProfile(Game game) {
+    UserProfile userProfileToUpdate = userRepo.findById(game.getUserId());
+    userProfileToUpdate
+            .setBadAnswers(userProfileToUpdate.getBadAnswers() + game.getWrongAnswersSoFar());
+    userProfileToUpdate
+            .setGoodAnswers(userProfileToUpdate.getGoodAnswers() + game.getRightAnswersSoFar());
+    userProfileToUpdate.setTotalNumberOfQuestionsAnswered(
+            userProfileToUpdate.getTotalNumberOfQuestionsAnswered() + game
+                    .getThisQuestionsNumber());
   }
 }
