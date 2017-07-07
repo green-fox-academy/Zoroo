@@ -164,7 +164,7 @@ public class MathGame {
     question.setAnswerType(DataType.TEXT);
     question.setQuestionType(DataType.TEXT);
     question.setQuestionText(questionText);
-    question.setGoodIndex(
+    question.setGoodAnswerIndex(
             indexOfTheRightAnswerInThePossibleAnswers);
     question.setPossibleAnswers(possibleAnswers);
     return question;

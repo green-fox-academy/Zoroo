@@ -21,7 +21,7 @@ public class HomeController {
     Question question = new Question();
 
     question.setQuestionText("18 + 24 = ?");
-    question.setGoodIndex(1);
+    question.setGoodAnswerIndex(1);
     ArrayList<String> answers = new ArrayList<>();
     answers.add("42");
     answers.add("38");
