@@ -27,6 +27,7 @@ public class GameService {
   public void createNewGame(GameDTO gameDTO) {
     Game game = new Game();
     game.setUserId(gameDTO.getUserId());
+    game.setUserName(userRepo.findById(gameDTO.getUserId()).getUsername());
     game.setLevelOfHardness(gameDTO.getLevelOfHardness());
     game.setNumberOfAllTheAnswerPossibilities(gameDTO.getNumberOfAllTheAnswerPossibilities());
     game.setGameType(gameDTO.getGameType());
@@ -42,6 +43,10 @@ public class GameService {
     }
     return gameToReturn;
   }
+
+
+
+
 
   public Game playOneRound(Game game) {
     game = getGameById(game.getGameId());
@@ -79,5 +84,10 @@ public class GameService {
     userProfileToUpdate.setTotalNumberOfQuestionsAnswered(
             userProfileToUpdate.getTotalNumberOfQuestionsAnswered() + game
                     .getThisQuestionsNumber());
+    userRepo.save(userProfileToUpdate);
+  }
+
+  public List<UserProfile> topPlayersList(){
+    return userRepo.findTop10ByOrderByPrecentageDesc();
   }
 }
