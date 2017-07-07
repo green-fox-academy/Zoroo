@@ -2,10 +2,9 @@ package com.greenfox.zoroo.service;
 
 
 import com.greenfox.zoroo.gameLogic.MathGame;
-import com.greenfox.zoroo.model.DataType;
 import com.greenfox.zoroo.model.Game;
 import com.greenfox.zoroo.model.GameDTO;
-import com.greenfox.zoroo.model.Question;
+import com.greenfox.zoroo.model.GameType;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -41,17 +40,17 @@ public class GameService {
 
   public Game playOneRound(Game game) {
     game = getGameById(game.getGameId());
-    switch (game.getGameType()) {
-      case MATHTIMETABLE:
-        return playMathTimeTableGame(game);
-      case GEOGRAPHY:
-        return playGeographyGame(game);
+    game.setThisQuestionsNumber(game.getThisQuestionsNumber() + 1);
+    if (game.getGameType().equals(GameType.GEOGRAPHY)) {
+      game = playGeographyGame(game);
+    } else {
+      game = playMathGame(game);
     }
     return game;
   }
 
-  private Game playMathTimeTableGame(Game game) {
-    mathGame.playTimeTableGame(game);
+  private Game playMathGame(Game game) {
+    mathGame.playMathGame(game);
     return game;
   }
 

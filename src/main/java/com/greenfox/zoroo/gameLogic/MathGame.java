@@ -28,27 +28,6 @@ public class MathGame {
   private int levelOfHardness;
   private int amountOfPossibleAnswers;
 
-
-  public String getQuestionText() {
-    return questionText;
-  }
-
-  public void setLevelOfHardness(int levelOfHardness) {
-    this.levelOfHardness = levelOfHardness;
-  }
-
-  public void setAmountOfPossibleAnswers(int amountOfPossibleAnswers) {
-    this.amountOfPossibleAnswers = amountOfPossibleAnswers;
-  }
-
-  public List<String> getPossibleAnswers() {
-    return possibleAnswers;
-  }
-
-  public int getIndexOfTheRightAnswerInThePossibleAnswers() {
-    return indexOfTheRightAnswerInThePossibleAnswers;
-  }
-
   private int getRandomNumber(int maxValue) {
     Random r = new Random();
     return r.nextInt(maxValue - 1) + 1;
@@ -59,7 +38,16 @@ public class MathGame {
     secondNumber = getRandomNumber(secondNumberMaxValue);
   }
 
-  private void setTimeTableMaxNumberValues() {
+  private void setTimeTableMaxNumberValues(Game game) {
+    switch (game.getGameType()) {
+      case MATHTIMETABLE:
+        setTimeTableMaxValues();
+      case MATHADDING:
+        setAddingsMaxValues();
+    }
+  }
+
+  private void setTimeTableMaxValues() {
     switch (levelOfHardness) {
       case 1:
         firstNumberMaxValue = 5;
@@ -104,18 +92,63 @@ public class MathGame {
     }
   }
 
-  public void playTimeTableGame(Game game) {
+  private void setAddingsMaxValues() {
+    switch (levelOfHardness) {
+      case 1:
+        firstNumberMaxValue = 10;
+        secondNumberMaxValue = 10;
+        break;
+      case 2:
+        firstNumberMaxValue = 20;
+        secondNumberMaxValue = 10;
+        break;
+      case 3:
+        firstNumberMaxValue = 20;
+        secondNumberMaxValue = 20;
+        break;
+      case 4:
+        firstNumberMaxValue = 40;
+        secondNumberMaxValue = 40;
+        break;
+      case 5:
+        firstNumberMaxValue = 80;
+        secondNumberMaxValue = 80;
+        break;
+      case 6:
+        firstNumberMaxValue = 100;
+        secondNumberMaxValue = 200;
+        break;
+      case 7:
+        firstNumberMaxValue = 500;
+        secondNumberMaxValue = 500;
+        break;
+      case 8:
+        firstNumberMaxValue = 1000;
+        secondNumberMaxValue = 1000;
+        break;
+      case 9:
+        firstNumberMaxValue = 5000;
+        secondNumberMaxValue = 5000;
+        break;
+      case 10:
+        firstNumberMaxValue = 10000;
+        secondNumberMaxValue = 10000;
+        break;
+    }
+  }
+
+  public void playMathGame(Game game) {
     this.levelOfHardness = game.getLevelOfHardness();
     this.amountOfPossibleAnswers = game.getNumberOfAllTheAnswerPossibilities();
-    setTimeTableMaxNumberValues();
+
+    setTimeTableMaxNumberValues(game);
+
     setRandomFirstAndSecondNumbers();
     setRightAnswer(game);
     setQuestionText(game);
     setPossibleAnswersListForTimeTable(game);
     setIndexOfTheRightAnswerInThePossibleAnswers();
     game.setQuestion(setTheQuestionsForThisGame());
-
-
   }
 
   private Question setTheQuestionsForThisGame() {
@@ -161,7 +194,7 @@ public class MathGame {
     String otherAnswer = "";
     while (possibleAnswers.size() < amountOfPossibleAnswers) {
       setRandomFirstAndSecondNumbers();
-      switch (game.getGameType()){
+      switch (game.getGameType()) {
         case MATHTIMETABLE:
           otherAnswer = String.valueOf(firstNumber * secondNumber);
           break;
