@@ -1,5 +1,6 @@
 package com.greenfox.zoroo.controller;
 
+import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -22,11 +23,11 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ZoroobackendApplication.class)
 @WebAppConfiguration
-public class MainControllerTest {
-
+public class GameControllerTest {
   private static final MediaType CONTENT_TYPE_HTML = new MediaType(MediaType.TEXT_HTML.getType(),
       MediaType.TEXT_HTML.getSubtype(),
       Charset.forName("utf8"));
+
   private MockMvc mockMvc;
 
   @Autowired
@@ -38,26 +39,7 @@ public class MainControllerTest {
   }
 
   @Test
-  public void getMainPage_pathWithoutEndingSlash() throws Exception {
-    mockMvc.perform(get("/main"))
-        .andExpect(status().isOk())
-        .andExpect(content().contentType(CONTENT_TYPE_HTML))
-        .andDo(print());
-  }
+  public void getQuestionPage() throws Exception {
 
-  @Test
-  public void getMainPage_pathWithEndingSlash() throws Exception {
-    mockMvc.perform(get("/main/"))
-        .andExpect(status().isOk())
-        .andExpect(content().contentType(CONTENT_TYPE_HTML))
-        .andDo(print());
-  }
-
-  @Test
-  public void getStatistics() throws Exception {
-    mockMvc.perform(get("/statistics"))
-        .andExpect(status().isOk())
-        .andExpect(content().contentType(CONTENT_TYPE_HTML))
-        .andDo(print());
   }
 }

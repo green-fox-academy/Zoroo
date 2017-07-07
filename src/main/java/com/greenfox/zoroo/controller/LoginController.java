@@ -16,6 +16,9 @@ public class LoginController {
   @Autowired
   UserRepo userRepo;
 
+  @Autowired
+  GeographicInfoRepo geographicInfoRepo;
+
 
   @GetMapping(value = {"/login", "/login/"})
   public String getLoginPage(Model model, LoginFormDto loginFormDto) {

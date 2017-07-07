@@ -77,6 +77,7 @@ public class GeographicInfoGame {
   }
 
   public void setQuestionText(Game game) {
+
     setRandomCountry();
     this.geoType = getRandomNumber(2);
     System.out.println(geoType);

@@ -5,18 +5,19 @@ import com.greenfox.zoroo.Repository.UserRepo;
 import com.greenfox.zoroo.gameLogic.GeographicInfoGame;
 import com.greenfox.zoroo.gameLogic.MathGame;
 import com.greenfox.zoroo.model.Game;
-import com.greenfox.zoroo.model.GameDTO;
+import com.greenfox.zoroo.model.dto.GameDto;
 import com.greenfox.zoroo.model.GameType;
 import com.greenfox.zoroo.model.UserProfile;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GameService {
 
   @Autowired
   UserRepo userRepo;
 
-  @Autowired
   Game game;
 
   @Autowired
@@ -28,14 +29,15 @@ public class GameService {
   List<Game> allGames;
 
 
-  public void createNewGame(GameDTO gameDTO) {
+  public Game createNewGame(GameDto gameDto) {
     Game game = new Game();
-    game.setUserId(gameDTO.getUserId());
-    game.setUserName(userRepo.findById(gameDTO.getUserId()).getUsername());
-    game.setLevelOfHardness(gameDTO.getLevelOfHardness());
-    game.setNumberOfAllTheAnswerPossibilities(gameDTO.getNumberOfAllTheAnswerPossibilities());
-    game.setGameType(gameDTO.getGameType());
+    game.setUserId(gameDto.getUserId());
+    game.setUserName(userRepo.findOne(gameDto.getUserId()).getUsername());
+    game.setLevelOfHardness(gameDto.getLevelOfHardness());
+    game.setNumberOfAllTheAnswerPossibilities(gameDto.getNumberOfAllTheAnswerPossibilities());
+    game.setGameType(gameDto.getGameType());
     allGames.add(game);
+    return game;
   }
 
   private Game getGameById(int gameId) {
@@ -93,7 +95,7 @@ public class GameService {
   }
 
   private void endOfTheGameUpdateUserProfile(Game game) {
-    UserProfile userProfileToUpdate = userRepo.findById(game.getUserId());
+    UserProfile userProfileToUpdate = userRepo.findOne(game.getUserId());
     userProfileToUpdate
             .setBadAnswers(userProfileToUpdate.getBadAnswers() + game.getWrongAnswersSoFar());
     userProfileToUpdate

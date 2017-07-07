@@ -1,5 +1,7 @@
 package com.greenfox.zoroo.model.dto;
 
+
+import com.greenfox.zoroo.model.GameType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,10 +9,12 @@ import lombok.NoArgsConstructor;
 
 @Builder
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+@AllArgsConstructor
+public class GameDto {
 
-  private String username;
   private Long userId;
+  private int levelOfHardness;
+  private int numberOfAllTheAnswerPossibilities;
+  private String gameType;
 }
