@@ -24,7 +24,7 @@ public class HomeController {
     geographicInfoGame.setRandomCountry();
     geographicInfoGame.setQuestionText(game);
     geographicInfoGame.setRightAnswer(game);
-    geographicInfoGame.setPossibleAnswersList(game);
+    geographicInfoGame.setPossibleAnswersListForGeographic(game);
     geographicInfoGame.setIndexOfTheRightAnswerInThePossibleAnswers();
     return "index";
   }

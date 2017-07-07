@@ -67,7 +67,6 @@ public class GeographicInfoGame {
   public void setRandomCountry() {
     int randomNumber = getRandomNumber(10);
     String country = geographicInfoRepo.findAll().get(randomNumber).getCountry();
-    System.out.println(randomNumber);
     geographicInfo.setCountry(country);
     geographicInfo.setCapital(geographicInfoRepo.findAll().get(randomNumber).getCapital());
   }
@@ -77,7 +76,6 @@ public class GeographicInfoGame {
       case GEOGRAPHY:
         setRandomCountry();
         this.questionText = "What is the capital of " + geographicInfo.getCountry() + "?";
-        System.out.println(questionText);
         break;
     }
   }
@@ -86,7 +84,6 @@ public class GeographicInfoGame {
     switch (game.getGameType()) {
       case GEOGRAPHY:
         rightAnswer = geographicInfo.getCapital();
-        System.out.println(geographicInfo.getCapital());
         break;
     }
   }
@@ -107,13 +104,13 @@ public class GeographicInfoGame {
       }
     }
     Collections.shuffle(possibleAnswers);
-    for (String item : possibleAnswers)
-    System.out.println(item + possibleAnswers.size());
+    for (String item : possibleAnswers) {
+      System.out.println(item + possibleAnswers.size());
+    }
   }
 
   public void setIndexOfTheRightAnswerInThePossibleAnswers() {
     indexOfTheRightAnswerInThePossibleAnswers = possibleAnswers
         .indexOf(rightAnswer);
-    System.out.println(indexOfTheRightAnswerInThePossibleAnswers);
   }
 }
