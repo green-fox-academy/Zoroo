@@ -16,28 +16,31 @@
             <a th:href="${link.address}" th:text="${link.text}"/>
         </li>
     </ul>
-    <div class="container">
-        <div class="selection list-group col-md-5">
-            <h2 class="text-center">Válassz témakört</h2>
-            <select class="center-block" name="category" th:size="${#lists.size(game.categories)}">
-                <option class="selection-item list-group-item" th:each="category : ${game.categories}" th:text="${category}"></option>
-            </select>
+    <form th:action="@{/question}" th:object="${gamestart}" method="post">
+        <input type="hidden" th:field="*{userId}"/>
+        <div class="container">
+            <div class="selection list-group col-md-5">
+                <h2 class="text-center">Válassz témakört</h2>
+                <select class="center-block" name="category" th:field="*{gameType}" th:size="${#lists.size(game.categories)}">
+                    <option class="selection-item list-group-item" th:each="category : ${game.categories}" th:value="${category}" th:text="${category}"></option>
+                </select>
+            </div>
+            <div class="selection list-group col-md-5">
+                <h2>Válassz nehézségi szintet</h2>
+                <select class="form-control" th:field="*{levelOfHardness}">
+                    <option th:each="difficulty, iter : ${game.difficulties}" th:value="${iter.index}" th:text="${difficulty}"></option>
+                </select>
+                <h3>Válaszlehetőségek</h3>
+                <select class="form-control" th:field="*{numberOfAllTheAnswerPossibilities}">
+                    <option th:each="possibility : ${game.possibilities}" th:value="${possibility}" th:text="${possibility}"></option>
+                </select>
+                <br/>
+            </div>
         </div>
-        <div class="selection list-group col-md-5">
-            <h2>Válassz nehézségi szintet</h2>
-            <select class="form-control">
-                <option th:each="difficulty : ${game.difficulties}" th:text="${difficulty}"></option>
-            </select>
-            <h3>Válaszlehetőségek</h3>
-            <select class="form-control">
-                <option th:each="possibility : ${game.possibilities}" th:text="${possibility}"></option>
-            </select>
-            <br/>
+        <div class="text-center">
+            <input class="btn btn-primary" type="submit" value="Kezdhetjük"/>
         </div>
-    </div>
-    <div class="text-center">
-        <a class="btn btn-primary" th:href="@{/question}">Kezdhetjük</a>
-    </div>
+    </form>
     <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
     <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 </body>

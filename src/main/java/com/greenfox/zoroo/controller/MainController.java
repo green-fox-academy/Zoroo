@@ -3,6 +3,7 @@ package com.greenfox.zoroo.controller;
 import com.greenfox.zoroo.Repository.UserRepo;
 import com.greenfox.zoroo.model.NavLink;
 import com.greenfox.zoroo.model.UserProfile;
+import com.greenfox.zoroo.model.dto.GameDto;
 import com.greenfox.zoroo.model.dto.GameStartDto;
 import com.greenfox.zoroo.model.dto.UserDto;
 import java.util.ArrayList;
@@ -44,6 +45,9 @@ public class MainController {
             .build());
 
     model.addAttribute("game", gameStartDto);
+    GameDto dto = new GameDto();
+    dto.setUserId(loggedInUser.getId());
+    model.addAttribute("gamestart", dto);
     return "main";
   }
 

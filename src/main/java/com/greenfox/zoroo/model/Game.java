@@ -13,7 +13,7 @@ public class Game {
   private Long userId;
   private String userName;
   private Question question;
-  private GameType gameType;
+  private String gameType;
   private int totalQuestionsInThisGame;
   private int levelOfHardness;
   private int numberOfAllTheAnswerPossibilities;

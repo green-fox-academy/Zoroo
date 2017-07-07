@@ -16,5 +16,5 @@ public class GameDto {
   private Long userId;
   private int levelOfHardness;
   private int numberOfAllTheAnswerPossibilities;
-  private GameType gameType;
+  private String gameType;
 }

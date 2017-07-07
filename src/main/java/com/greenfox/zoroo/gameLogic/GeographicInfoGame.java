@@ -73,7 +73,7 @@ public class GeographicInfoGame {
 
   public void setQuestionText(Game game) {
     switch (game.getGameType()) {
-      case GEOGRAPHY:
+      case "GEOGRAPHY":
         setRandomCountry();
         this.questionText = "What is the capital of " + geographicInfo.getCountry() + "?";
         break;
@@ -82,7 +82,7 @@ public class GeographicInfoGame {
 
   public void setRightAnswer(Game game) {
     switch (game.getGameType()) {
-      case GEOGRAPHY:
+      case "GEOGRAPHY":
         rightAnswer = geographicInfo.getCapital();
         break;
     }
@@ -94,7 +94,7 @@ public class GeographicInfoGame {
     String otherAnswer = "";
     while (possibleAnswers.size() < amountOfPossibleAnswers) {
       switch (game.getGameType()) {
-        case GEOGRAPHY:
+        case "GEOGRAPHY":
           int randomNumber = getRandomNumber(10);
           otherAnswer = geographicInfoRepo.findAll().get(randomNumber).getCapital();
           break;

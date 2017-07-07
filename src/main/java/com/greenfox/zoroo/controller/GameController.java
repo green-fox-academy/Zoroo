@@ -7,6 +7,7 @@ import com.greenfox.zoroo.model.GameType;
 import com.greenfox.zoroo.model.Question;
 import com.greenfox.zoroo.model.UserProfile;
 import com.greenfox.zoroo.model.dto.GameDto;
+import com.greenfox.zoroo.model.dto.GameStartDto;
 import com.greenfox.zoroo.model.dto.UserProfileDto;
 import com.greenfox.zoroo.service.GameService;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class GameController {
     GameDto gameDto =
         GameDto.builder()
             .userId(1L)
-            .gameType(GameType.MATHADDING)
+            .gameType("MATHADDING")
             .levelOfHardness(1)
             .numberOfAllTheAnswerPossibilities(4)
             .build();
@@ -51,8 +52,8 @@ public class GameController {
     return modelAndView;
   }
 
-  @GetMapping(value = "/question")
-  public String getQuestionPage(Model model) {
+  @PostMapping(value = "/question")
+  public String getQuestionPage(GameDto game, Model model) {
     UserProfile loggedInUser = userRepo.findOne(1L);
 
     UserProfileDto user = new UserProfileDto(loggedInUser.getId(), loggedInUser.getUsername());
@@ -75,7 +76,7 @@ public class GameController {
   @GetMapping(value = {"/geographic", "/geographic/"})
   public String startGeographyGame() {
     Game game = new Game();
-    game.setGameType(GameType.GEOGRAPHY);
+    game.setGameType("GEOGRAPHY");
     geographicInfoGame.setRandomCountry();
     geographicInfoGame.setQuestionText(game);
     geographicInfoGame.setRightAnswer(game);
