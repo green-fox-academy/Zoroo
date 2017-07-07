@@ -1,7 +1,6 @@
 package com.greenfox.zoroo.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -23,13 +22,7 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ZoroobackendApplication.class)
 @WebAppConfiguration
-public class LoginControllerTest {
-
-  public static final String LOGIN_PARAM_NAME_FOR_USERNAME = "username";
-  public static final String LOGIN_PARAM_NAME_FOR_PASSWORD = "password";
-  public static final String TEST_USERNAME_CORRECT = "Mully";
-  public static final String TEST_PASSWORD_CORRECT = "12345";
-  public static final String TEST_PASSWORD_WRONG = "this_is_a_wrong_password";
+public class MainControllerTest {
 
   private static final MediaType CONTENT_TYPE_HTML = new MediaType(MediaType.TEXT_HTML.getType(),
       MediaType.TEXT_HTML.getSubtype(),
@@ -45,70 +38,40 @@ public class LoginControllerTest {
   }
 
   @Test
-  public void getLoginPage_pathWithoutEndingSlash() throws Exception {
-    mockMvc.perform(get("/login"))
+  public void addAttributes_pathWithoutEndingSlash() throws Exception {
+    mockMvc.perform(get("/main"))
         .andExpect(status().isOk())
         .andExpect(content().contentType(CONTENT_TYPE_HTML))
         .andDo(print());
   }
 
   @Test
-  public void getLoginPage_pathWithEndingSlash() throws Exception {
-    mockMvc.perform(get("/login/"))
+  public void addAttributes_pathWithEndingSlash() throws Exception {
+    mockMvc.perform(get("/main"))
         .andExpect(status().isOk())
         .andExpect(content().contentType(CONTENT_TYPE_HTML))
         .andDo(print());
   }
 
   @Test
-  public void processLoginForm_pathWithoutEndingSlash_CorrectPassword() throws Exception {
-    mockMvc.perform(post("/login")
-        .param(LOGIN_PARAM_NAME_FOR_USERNAME, TEST_USERNAME_CORRECT)
-        .param(LOGIN_PARAM_NAME_FOR_PASSWORD, TEST_PASSWORD_CORRECT))
-        .andExpect(status().is(302))
-        .andDo(print());
-  }
-
-  @Test
-  public void processLoginForm_pathWithoutEndingSlash_WrongPassword() throws Exception {
-    mockMvc.perform(post("/login")
-        .param(LOGIN_PARAM_NAME_FOR_USERNAME, TEST_USERNAME_CORRECT)
-        .param(LOGIN_PARAM_NAME_FOR_PASSWORD, TEST_PASSWORD_WRONG))
+  public void getMainPage_pathWithoutEndingSlash() throws Exception {
+    mockMvc.perform(get("/main"))
         .andExpect(status().isOk())
         .andExpect(content().contentType(CONTENT_TYPE_HTML))
         .andDo(print());
   }
 
   @Test
-  public void processLoginForm_pathWitEndingSlash_CorrectPassword() throws Exception {
-    mockMvc.perform(post("/login/")
-        .param(LOGIN_PARAM_NAME_FOR_USERNAME, TEST_USERNAME_CORRECT)
-        .param(LOGIN_PARAM_NAME_FOR_PASSWORD, TEST_PASSWORD_CORRECT))
-        .andExpect(status().is(302))
-        .andDo(print());
-  }
-
-  @Test
-  public void processLoginForm_pathWitEndingSlash_WrongPassword() throws Exception {
-    mockMvc.perform(post("/login/")
-        .param(LOGIN_PARAM_NAME_FOR_USERNAME, TEST_USERNAME_CORRECT)
-        .param(LOGIN_PARAM_NAME_FOR_PASSWORD, TEST_PASSWORD_WRONG))
+  public void getMainPage_pathWithEndingSlash() throws Exception {
+    mockMvc.perform(get("/main/"))
         .andExpect(status().isOk())
         .andExpect(content().contentType(CONTENT_TYPE_HTML))
         .andDo(print());
   }
 
   @Test
-  public void getRegisterPage_pathWithoutEndingSlash() throws Exception {
-    mockMvc.perform(get("/register"))
-        .andExpect(status().isOk())
-        .andExpect(content().contentType(CONTENT_TYPE_HTML))
-        .andDo(print());
-  }
-
-  @Test
-  public void getRegisterPage_pathWithEndingSlash() throws Exception {
-    mockMvc.perform(get("/register/"))
+  public void getStatistics() throws Exception {
+    mockMvc.perform(get("/statistics"))
         .andExpect(status().isOk())
         .andExpect(content().contentType(CONTENT_TYPE_HTML))
         .andDo(print());
