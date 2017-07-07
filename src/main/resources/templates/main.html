@@ -31,8 +31,12 @@
         </div>
         <div class="selection list-group col-md-5">
             <h2>Válassz nehézségi szintet</h2>
-            <select name="difficulty" th:size="${#lists.size(game.difficulties)}">
-                <option class="selection-item list-group-item" th:each="difficulty : ${game.difficulties}" th:text="${difficulty}"></option>
+            <select class="form-control">
+                <option th:each="difficulty : ${game.difficulties}" th:text="${difficulty}"></option>
+            </select>
+            <h3>Válaszlehetőségek</h3>
+            <select class="form-control">
+                <option th:each="possibility : ${game.possibilities}" th:text="${possibility}"></option>
             </select>
         </div>
     </div>
