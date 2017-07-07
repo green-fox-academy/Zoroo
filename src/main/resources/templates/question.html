@@ -14,7 +14,7 @@
         <ul>
             <form style="display:inline" action="/answer" th:each="answer, iter :${question.possibleAnswers}" id="select">
                 <input type="hidden" name="index" th:value="${iter.index}"/>
-                <input class="selection answer" type="submit" th:value="${answer}"/>
+                <input class="selection answer btn btn-primary" type="submit" th:value="${answer}"/>
             </form>
         </ul>
         <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
