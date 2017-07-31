@@ -9,6 +9,8 @@ CREATE TABLE IF NOT EXISTS User_Profile (
 );
 
 INSERT INTO User_Profile (username, password, good_answers,bad_answers) VALUES ('Mully','12345', 45, 69);
+INSERT INTO User_Profile (username, password, good_answers,bad_answers) VALUES ('Norbert','norbert', 111, 12);
+INSERT INTO User_Profile (username, password, good_answers,bad_answers) VALUES ('Marci','marci', 141, 2);
 
 DROP TABLE IF EXISTS Geographic_Info;
 CREATE TABLE IF NOT EXISTS Geographic_Info (
